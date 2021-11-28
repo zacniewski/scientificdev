@@ -3,8 +3,8 @@
 [Master Stylesheet]
 
 Project: Rhythm
-Version: 3.2
-Last change: 28 Jyle 2021
+Version: 3.4
+Last change: 23 November 2021
 Primary use: Multipurpose Template  
 -------------------------------------------------------------------*/
 
@@ -91,7 +91,7 @@ Primary use: Multipurpose Template
    * Font Awesome
    */
   
-  @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css";
+  @import "all.min.css";
   
   /*
    * Font HK Grotesk
@@ -247,8 +247,11 @@ img:not([draggable]), embed, object, video{
     -webkit-transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);
     transition: all 0.27s cubic-bezier(0.000, 0.000, 0.580, 1.000);
 }
-.no-animate, .no-animate *{    
-    transition:0 none !important;  
+.no-animate{    
+    -webkit-transition-property: none !important;
+    -moz-transition-property: none !important;
+    -o-transition-property: none !important;
+    transition-property: none !important; 
 }
 .clearlist, .clearlist li {
     list-style: none;
@@ -1529,7 +1532,7 @@ html:not(.mobile) .appear-animate .linesAnimIn .word{
 .wow,
 .wow-menubar,
 .wow-p{
-    opacity: 0.01;
+    opacity: 0.01;    
 }
 html:not(.mobile) .wow,
 html:not(.mobile) .wow-menubar,
@@ -1558,7 +1561,7 @@ html:not(.mobile) .wow-p{
     .wow-menubar,
     .wow-p{
         opacity: 1 !important;
-        -webkit-transform: !important;
+        -webkit-transform: none !important;
         transform: none !important;
         -webkit-animation-play-state: paused !important;
         animation-play-state: paused !important;
@@ -5525,6 +5528,7 @@ table.shopping-cart-table tr td{
 .tpl-minimal-tabs > li > a:hover{
     background: none;
     border-color: #ccc !important;
+    color: #111;
 }
 .tpl-minimal-tabs li a.active,
 .tpl-minimal-tabs li a.active:hover{
@@ -6065,9 +6069,10 @@ table.shopping-cart-table tr td{
     height: 50px;
     padding: 8px 0;
     position: fixed;
-    bottom: 55px;
-    right: 15px;
+    bottom: 75px;
+    right: 20px;
     color: #ffffff;
+    font-size: 16px;
     text-align: center;
     text-decoration: none;
     line-height: 1.2;

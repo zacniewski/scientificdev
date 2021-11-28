@@ -1011,7 +1011,10 @@ function initWorkFilter(){
                      animateClass: "animated",
                      offset: 100,
                      mobile: false,
-                     live: true
+                     live: true,
+                     callback: function(box){                
+                         setInterval(function(){ $(box).removeClass("no-animate"); }, 1500);
+                     }
                  });
                  wow_p.init();
              }
@@ -1116,12 +1119,18 @@ function init_wow(){
         
         /* Wow init */
        
+        if ($("body").hasClass("appear-animate")) {
+            $(".wow").addClass("no-animate");
+        }
         var wow = new WOW({
             boxClass: 'wow',
             animateClass: 'animated',
             offset: 100,
             mobile: false, 
-            live: true 
+            live: true,
+            callback: function(box){                
+                setInterval(function(){ $(box).removeClass("no-animate"); }, 1500);
+            }
         });
         
         if ($("body").hasClass("appear-animate")){
@@ -1132,12 +1141,18 @@ function init_wow(){
         
         /* Wow for portfolio init */
        
+       if ($("body").hasClass("appear-animate")) {
+            $(".wow-p").addClass("no-animate");
+        }
         var wow_p = new WOW({
             boxClass: 'wow-p',
             animateClass: 'animated',
             offset: 100,
             mobile: false, 
-            live: true 
+            live: true,
+            callback: function(box){                
+                setInterval(function(){ $(box).removeClass("no-animate"); }, 1500);
+            }
         });
         
         if ($("body").hasClass("appear-animate")){
@@ -1149,7 +1164,8 @@ function init_wow(){
         /* Wow for menu bar init */
         
         if (($("body").hasClass("appear-animate")) && ($(window).width() >= 1024) && ($("html").hasClass("no-mobile"))){
-           $(".wow-menubar").addClass("fadeInDownShort").addClass("animated");           
+           $(".wow-menubar").addClass("no-animate").addClass("fadeInDownShort").addClass("animated");  
+           setInterval(function(){ $(".wow-menubar").removeClass("no-animate"); }, 1500);         
         } else{
             $(".wow-menubar").css("opacity", "1");
         }
