@@ -3,8 +3,8 @@
 [Master Stylesheet]
 
 Project: Rhythm
-Version: 3.4
-Last change: 23 November 2021
+Version: 3.5
+Last change: 20 February 2022
 Primary use: Multipurpose Template  
 -------------------------------------------------------------------*/
 
@@ -5767,7 +5767,7 @@ table.shopping-cart-table tr td{
     color: #fff;
     border-color: #fff;
 }
-.light-content .accordion > dt > a:after{
+.light-content .toggle > dt > a:after{
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="9px"><path fill-rule="evenodd"  fill="rgb(255, 255, 255)" d="M13.006,0.961 L14.273,2.228 L7.500,9.001 L0.742,2.243 L2.009,0.976 L7.500,6.467 L13.006,0.961 Z"/></svg>');
 }
 .light-content .toggle > dd{

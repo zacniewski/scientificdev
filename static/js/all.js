@@ -248,6 +248,7 @@
             if (mobile_nav.hasClass("active")) {
                 desktop_nav.slideUp("slow", "easeOutExpo").removeClass("js-opened");
                 mobile_nav.removeClass("active");
+                mobile_nav.attr("aria-expanded", "false");
             }
         });
         
@@ -331,7 +332,7 @@
         });
         
         $(".inner-nav a").focus(function(){
-            if (!($(".main-nav").hasClass("mobile-on"))) {
+            if (!($(".main-nav").hasClass("mobile-on")) && ($("html").hasClass("no-touch"))) {
                 $(this).parent("li").parent().children().find(".mn-has-sub:first")
                     .attr("aria-expanded", "false")
                     .removeClass("js-opened");
