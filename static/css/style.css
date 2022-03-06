@@ -2180,8 +2180,8 @@ a.logo:hover{
 .mobile-on .js-opened > .mn-has-sub > .mn-has-sub-icon-right{
     border-color: rgba(255,255,255, .4);
     -webkit-transform: rotate(270deg);
-    -moz-transform: rotate(270deg)
-    transform: rotate(270deg)
+    -moz-transform: rotate(270deg);
+    transform: rotate(270deg);
 }
 .mobile-on .inner-nav li{
     margin: 0 !important;
