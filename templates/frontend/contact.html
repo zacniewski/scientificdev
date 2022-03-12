@@ -7,27 +7,46 @@
 
                 <!-- Contact Section -->
                 <section class="page-section bg-dark light-content">
+
+                {% for message in messages %}
+                  <div class="uk-{{ message.tags }}" uk-alert style="font-size: 1.5rem;">
+                    <a style="color: black;" class="uk-alert-close" uk-close></a>
+                    {{ message }}
+                  </div>
+                {% endfor %}
+
                     <div class="container relative">
 
                         <!-- Contact Form -->
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
-                                
-                                <form class="form contact-form wow fadeInUpShort" id="contact_form">
-                                    
+                                <form class="form contact-form wow fadeInUpShort" id="contact_form" method="post" action=".">
+                                    {%  csrf_token %}
+
+                                    {% for hidden_field in form.hidden_fields %}
+                                        {% if hidden_field.errors %}
+                                          <ul>
+                                            {% for error in hidden_field.errors %}
+                                              <li>(Hidden field {{ hidden_field.name }}) {{ error }}</li>
+                                            {% endfor %}
+                                          </ul>
+                                        {% endif %}
+                                        {{ hidden_field }}
+                                      {% endfor %}
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <!-- Name -->
                                             <div class="form-group">
                                                 <label for="name">Name</label>
-                                                <input type="text" name="name" id="name" class="input-lg round form-control" placeholder="Enter your name" pattern=".{3,100}" required aria-required="true">
+                                                {{ form.name }}
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <!-- Email -->
                                             <div class="form-group">
                                                 <label for="email">Email</label>
-                                                <input type="email" name="email" id="email" class="input-lg round form-control" placeholder="Enter your email" pattern=".{5,100}" required aria-required="true">
+                                                {{ form.email }}
                                             </div>
                                         </div>
                                     </div>
@@ -35,21 +54,24 @@
                                     <!-- Message -->
                                     <div class="form-group">
                                         <label for="message">Message</label>
-                                        <textarea name="message" id="message" class="input-lg round form-control" style="height: 130px;" placeholder="Enter your message"></textarea>
+                                        {{  form.message }}
                                     </div>
                                     
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <!-- Inform Tip -->
-                                            <div class="form-tip pt-20 pt-sm-0 mb-sm-20">
-                                                All the fields are required
+                                            <div class="text-end pt-10">
+                                                 <!--reCaptcha -->
+                                                <script src='https://www.google.com/recaptcha/api.js'></script>
+                                                <div class="g-recaptcha" data-sitekey="6Le5boQUAAAAAGi5AEVkJYQ5TEeugOUoKFn5NP0Y"></div>
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
+
                                             <!-- Send Button -->
                                             <div class="text-end pt-10">
-                                                <button class="submit_btn btn btn-mod btn-w btn-large btn-round" id="submit_btn" aria-controls="result">
-                                                    Submit Message
+                                                <button class="submit_btn btn btn-mod btn-w btn-large btn-round pb-2 pt-2 align-middle" id="submit_btn" aria-controls="result">
+                                                    Submit message
                                                 </button>
                                             </div>
                                         </div>

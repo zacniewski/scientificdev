@@ -27,6 +27,7 @@ $(document).ready(function(){
         }
         
         //everything looks good! proceed...
+       /*
         if (proceed) {
             //data to be sent to server
             post_data = {
@@ -55,10 +56,10 @@ $(document).ready(function(){
             }, 'json');
             
         }
-        
-        return false;
+        */
+        //return false;
     });
-    
+
     //reset previously set border colors and hide all message on .keyup()
     $("#contact_form input, #contact_form textarea").keyup(function(){
         $("#contact_form input, #contact_form textarea").css('border-color', '');
