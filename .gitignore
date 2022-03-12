@@ -51,3 +51,5 @@ Thumbs.db
 # Virtual environments
 my_env/
 
+# Secrets
+.env
