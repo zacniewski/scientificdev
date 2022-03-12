@@ -13,16 +13,16 @@ $(document).ready(function(){
         //we simply change border color to red if empty field using .css()
         var proceed = true;
         if (user_name == "") {
-            $('input[name=name]').css('border-color', '#e41919');
+            $('input[name=name]').css('border-color', '#e41919').css('border-width', 'thick');
             proceed = false;
         }
         if (user_email == "") {
-            $('input[name=email]').css('border-color', '#e41919');
+            $('input[name=email]').css('border-color', '#e41919').css('border-width', 'thick');
             proceed = false;
         }
         
         if (user_message == "") {
-            $('textarea[name=message]').css('border-color', '#e41919');
+            $('textarea[name=message]').css('border-color', '#e41919').css('border-width', 'thick');
             proceed = false;
         }
         
