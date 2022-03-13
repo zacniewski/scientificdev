@@ -7,15 +7,26 @@
 
                 <!-- Contact Section -->
                 <section class="page-section bg-dark light-content">
-
-                {% for message in messages %}
-                  <div class="uk-{{ message.tags }}" uk-alert style="font-size: 1.5rem;">
-                    <a style="color: black;" class="uk-alert-close" uk-close></a>
-                    {{ message }}
-                  </div>
-                {% endfor %}
-
                     <div class="container relative">
+
+                        <!-- messages -->
+                        <div class="col-md-10 offset-md-1">
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                    {%  if 'alert-success' in  message.tags  %}
+                                        <i class="fa fa-check-circle"></i>
+                                    {%  endif %}
+                                    {%  if 'alert-danger' in  message.tags  %}
+                                        <i class="fa fa-times-circle"></i>
+                                    {%  endif %}
+                                    {%  if 'alert-info' in  message.tags  %}
+                                        <i class="fa fa-info-circle"></i>
+                                    {%  endif %}
+                                    {{ message }}
+                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        </div>
 
                         <!-- Contact Form -->
                         <div class="row">
