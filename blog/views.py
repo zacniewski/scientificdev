@@ -40,24 +40,6 @@ def post_detail(request, year, month, day, post):
                              publish__month=month,
                              publish__day=day)
 
-    # List of active comments for this post
-    comments = post.comments.filter(active=True)
-
-    new_comment = None
-
-    if request.method == 'POST':
-        # A comment was posted
-        comment_form = CommentForm(data=request.POST)
-        if comment_form.is_valid():
-            # Create Comment object but don't save to database yet
-            new_comment = comment_form.save(commit=False)
-            # Assign the current post to the comment
-            new_comment.post = post
-            # Save the comment to the database
-            new_comment.save()
-    else:
-        comment_form = CommentForm()
-
     # List of similar posts
     post_tags_ids = post.tags.values_list('id', flat=True)
     similar_posts = Post.published.filter(tags__in=post_tags_ids)\
@@ -68,9 +50,6 @@ def post_detail(request, year, month, day, post):
     return render(request,
                   'blog/post/detail.html',
                   {'post': post,
-                   'comments': comments,
-                   'new_comment': new_comment,
-                   'comment_form': comment_form,
                    'similar_posts': similar_posts})
 
 
