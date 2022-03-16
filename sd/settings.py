@@ -183,3 +183,16 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
 }
 
+HIGHLIGHTJS = {
+  # The URL to the jQuery JavaScript file
+  'jquery_url': '//code.jquery.com/jquery.min.js',
+  # The highlight.js base URL
+  'base_url': '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js',
+  # The complete URL to the highlight.js CSS file
+  'css_url': '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/{0}.min.css',
+  # Include jQuery with highlight.js JavaScript (affects django-highlightjs template tags)
+  'include_jquery': False,
+  # The default used style.
+  'style': 'github',
+  }
+

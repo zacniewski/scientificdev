@@ -1,8 +1,15 @@
 {%  extends 'base.html' %}
 {%  load static %}
 
+{% block additional_css %}
+    <!-- EnlighterJS Resources !-->
+    <link rel="stylesheet" href="{%  static 'css/enlighterjs.min.css' %}" />
+{% endblock additional_css %}
+
 {%  block content %}
-            
+
+
+
     <main id="main">
             
                 <!-- Home Section -->
@@ -110,13 +117,28 @@
                                             Morbi lacus massa, euismod ut turpis molestie, tristique sodales est. Integer sit amet mi id sapien tempor molestie in nec massa.
                                             Fusce non ante sed lorem rutrum feugiat.
                                         </p>
-                                        {{  post.body|safe }}
-                                        
+
+                                            {{  post.body|safe }}
+
                                         <ul>
                                             <li>First item of the list</li>
                                             <li>Second item of the list</li>
                                             <li>Third item of the list</li>
                                         </ul>
+
+
+                                        <pre data-enlighter-language="python">
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'author', 'publish', 'status')
+    list_filter = ('status', 'created', 'publish', 'author')
+    search_fields = ('title', 'body')
+    prepopulated_fields = {'slug': ('title',)}
+    raw_id_fields = ('author',)
+    date_hierarchy = 'publish'
+    ordering = ('status', 'publish')
+                                        </pre>
+
                                         
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris non laoreet dui. Morbi lacus massa, euismod ut turpis molestie, tristique sodales est. Integer sit amet mi id sapien tempor molestie in nec massa.
@@ -306,3 +328,19 @@
             </main>
             
 {%  endblock content %}
+
+ {% block additional_js %}
+     <script type="text/javascript" src="{%  static 'js/enlighterjs.min.js' %}"></script>
+    <script type="text/javascript">
+        // INIT CODE - simple page-wide initialization based on css selectors
+        // - highlight all pre + code tags (CSS3 selectors)
+        // - use javascript as default language
+        // - use theme "enlighter" as default theme
+        // - replace tabs with 2 spaces
+        EnlighterJS.init('pre', 'code', {
+                language : 'python',
+                theme: 'dracula',
+                indent : 4
+        });
+    </script>
+ {% endblock additional_js %}

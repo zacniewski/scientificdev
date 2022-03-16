@@ -27,6 +27,9 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
         <link rel="stylesheet" href="{#%  static 'css/animate.min.css' %#}">-->
         <link rel="stylesheet" href="{%  static 'css/splitting.css' %}">
 
+        {% block additional_css %}
+        {% endblock additional_css %}
+
     </head>
     <body class="appear-animate">
 
@@ -837,5 +840,8 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
         <script src="{%  static 'js/jquery.ajaxchimp.min.js' %}"></script>
         <script src="{%  static 'js/objectFitPolyfill.min.js' %}"></script>
         <script src="{%  static 'js/splitting.min.js' %}"></script>
+
+        {% block additional_js %}
+        {% endblock additional_js %}
     </body>
 </html>
