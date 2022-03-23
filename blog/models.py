@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+from taggit.managers import TaggableManager
 from tinymce.models import HTMLField
 
 
@@ -32,8 +33,9 @@ class Post(models.Model):
                               choices=STATUS_CHOICES,
                               default='draft')
 
-    objects = models.Manager()  # The default manager.
-    published = PublishedManager()  # Our custom manager.
+    objects = models.Manager()  # The default manager
+    published = PublishedManager()  # Custom manager
+    tags = TaggableManager()
 
     class Meta:
         ordering = ('-publish',)

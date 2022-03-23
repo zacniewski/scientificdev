@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'frontend.apps.FrontendConfig',
     'blog.apps.BlogConfig',
     'tinymce',
+    'taggit',
 ]
 
 MIDDLEWARE = [
