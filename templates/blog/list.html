@@ -86,6 +86,20 @@
                                     <a href=""><i class="fa fa-chevron-right"></i></a>
                                 </div>
                                 <!-- End Pagination -->
+
+                                {% if posts.has_other_pages %}
+                                    <div class="pagination mt-30 mt-xs-10">
+                                        <a href="?page=1"><i class="fa fa-chevron-left"></i></a>
+                                        {% for i in posts.paginator.page_range %}
+                                            {% if posts.number == i %}
+                                                <a href="" class="active" disabled>{{ i }}</a>
+                                            {% else %}
+                                                <a href="?page={{ i }}">{{ i }}</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                        <a href="?page={{ posts.paginator.num_pages }}"><i class="fa fa-chevron-right"></i></a>
+                                    </div>
+                                {% endif %}
                                 
                             </div>
                             <!-- End Content -->
