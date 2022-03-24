@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings as my_settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
@@ -22,3 +24,7 @@ urlpatterns = [
     path('', include('frontend.urls', namespace='frontend')),
     path('tinymce/', include('tinymce.urls')),
 ]
+
+
+if my_settings.DEBUG:
+    urlpatterns += static(my_settings.MEDIA_URL, document_root=my_settings.MEDIA_ROOT)

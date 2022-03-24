@@ -45,81 +45,28 @@
                             <div class="col-md-8 mb-sm-80">
                                 
                                 <div class="row">
-                            
-                                    <!-- Post Item -->
-                                    <div class="col-sm-6 mb-60 mb-xs-40">
-                                        
-                                        <div class="post-prev-img">
-                                            <a href="blog-single-sidebar-right-dark.html" tabindex="-1"><img src="{%  static 'images/blog/post-prev-1.jpg' %}" alt="" class="wow scaleOutIn" data-wow-duration="1.2s" /></a>
-                                        </div>
-                                        
-                                        <div class="post-prev-title">
-                                            <a href="blog-single-sidebar-right-dark.html">Meet the New Web Design Trends</a>
-                                        </div>
-                                        
-                                        <div class="post-prev-info">
-                                            <a href="">John Doe</a> • 10 December
-                                        </div>
-                                        
-                                        <div class="post-prev-text">
-                                            Lorem ipsum dolor sit amet, rembe adipiscing elite. Inwege maximus ligula semper metusere pellentesque mattis. Maecenas volutpat, diam enime volutpa. 
-                                        </div>
-                                        
-                                        <div class="post-prev-more">
-                                            <a href="blog-single-sidebar-right-dark.html" class="text-link" tabindex="-1">Learn More</a>
-                                        </div>
-                                        
-                                    </div>
-                                    <!-- End Post Item -->
-                                    
-                                    <!-- Post Item -->
-                                    <div class="col-sm-6 mb-60 mb-xs-40">
-                                        
-                                        <div class="post-prev-img">
-                                            <a href="blog-single-sidebar-right-dark.html" tabindex="-1"><img src="{%  static 'images/blog/post-prev-2.jpg' %}" alt="" class="wow scaleOutIn" data-wow-duration="1.2s" /></a>
-                                        </div>
-                                        
-                                        <div class="post-prev-title">
-                                            <a href="blog-single-sidebar-right-dark.html">Minimalistic Product Design</a>
-                                        </div>
-                                        
-                                        <div class="post-prev-info">
-                                            <a href="">John Doe</a> • 9 December
-                                        </div>
-                                        
-                                        <div class="post-prev-text">
-                                            Proin fringilla augue at maximus vestibulum. Nam pulvi vitae neque et porttitor. Praesent sed nisi eleifend, lorem fermentum ac ante lorem ipsum sit amet. 
-                                        </div>
-                                        
-                                        <div class="post-prev-more">
-                                            <a href="blog-single-sidebar-right-dark.html" class="text-link" tabindex="-1">Learn More</a>
-                                        </div>
-                                        
-                                    </div>
-                                    <!-- End Post Item -->
-
                                     <!-- My Post Items -->
                                     {% for post in posts %}
                                         <div class="col-sm-6 mb-60 mb-xs-40">
 
                                         <div class="post-prev-img">
-                                            <a href="blog-single-sidebar-right-dark.html" tabindex="-1"><img src="{%  static 'images/blog/post-prev-2.jpg' %}" alt="" class="wow scaleOutIn" data-wow-duration="1.2s" /></a>
+                                            <a href="{{ post.get_absolute_url }}" tabindex="-1"><img src="{{ post.photo.url }}" alt="" class="wow scaleOutIn" data-wow-duration="1.2s" /></a>
                                         </div>
 
                                         <div class="post-prev-title">
-                                            <a href="blog-single-sidebar-right-dark.html">{{ post.title }}</a>
+                                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                                         </div>
 
                                         <div class="post-prev-info">
-                                            <a href="">John Doe</a> • 9 December
+                                            {{ post.author.first_name }} • {{ post.created|date:'Y-N-d' }}
                                         </div>
 
                                         <div class="post-prev-text">
-                                            {{  post.body|safe }}
+                                            {{  post.body|safe|truncatewords:30|linebreaks }}
                                         </div>
 
                                         <div class="post-prev-more">
-                                            <a href="blog-single-sidebar-right-dark.html" class="text-link" tabindex="-1">Learn More</a>
+                                            <a href="{{ post.get_absolute_url }}" class="text-link" tabindex="-1">Learn More</a>
                                         </div>
 
                                     </div>
