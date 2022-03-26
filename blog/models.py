@@ -12,6 +12,12 @@ class PublishedManager(models.Manager):
         return super().get_queryset().filter(status='published')
 
 
+class DraftedManager(models.Manager):
+    def get_queryset(self):
+        return super(DraftedManager, self).get_queryset() \
+            .filter(status='draft')
+
+
 class Post(models.Model):
     STATUS_CHOICES = (
         ('draft', 'Draft'),
@@ -23,7 +29,7 @@ class Post(models.Model):
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
                                related_name='blog_posts')
-    body = HTMLField()
+    body = HTMLField('Content')
     photo = models.ImageField(upload_to='blog',
                               default='')
     publish = models.DateTimeField(default=timezone.now)
@@ -33,8 +39,9 @@ class Post(models.Model):
                               choices=STATUS_CHOICES,
                               default='draft')
 
-    objects = models.Manager()  # The default manager
+    objects = models.Manager()      # The default manager
     published = PublishedManager()  # Custom manager
+    drafted = DraftedManager()      # Custom manager
     tags = TaggableManager()
 
     class Meta:
