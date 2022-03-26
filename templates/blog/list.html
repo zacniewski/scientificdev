@@ -17,19 +17,31 @@
                                 </div>
                                 <div class="wow fadeInUpShort" data-wow-delay=".2s">
                                     <p class="hs-line-6 opacity-075 mb-20 mb-xs-0">
-                                        We share our best ideas in our blog
+                                        I share some of my ideas here ...
                                     </p>
                                 </div>
                             </div>
-                            
-                            <div class="col-md-4 mt-30 wow fadeInUpShort" data-wow-delay=".1s">
-                                <div class="mod-breadcrumbs text-end">
-                                    <a href="#">Home</a>&nbsp;<span class="mod-breadcrumbs-slash">•</span>&nbsp;<a href="#">Blog</a>&nbsp;<span class="mod-breadcrumbs-slash">•</span>&nbsp;<span>Columns</span>
-                                </div>                                
+                            <div class="col-md-4">
+                                <!-- Widget -->
+                                <div class="widget">
+
+                                    <div class="widget-body">
+                                        <div class="tags">
+                                            <a href="">Design</a>
+                                            <a href="">Portfolio</a>
+                                            <a href="">Digital</a>
+                                            <a href="">Branding</a>
+                                            <a href="">Theme</a>
+                                            <a href="">Clean</a>
+                                            <a href="">UI & UX</a>
+                                            <a href="">Love</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- End Widget -->
                             </div>
-                            
                         </div>
-                    
                     </div>
                 </section>
                 <!-- End Home Section -->
@@ -58,7 +70,7 @@
                                         </div>
 
                                         <div class="post-prev-info">
-                                            {{ post.author.first_name }} • {{ post.created|date:'Y-N-d' }}
+                                            {{ post.author.first_name }} • {{ post.created|date:'Y-N-d' }} • Tags:  {{ post.tags.all|join:", " }}
                                         </div>
 
                                         <div class="post-prev-text">
@@ -221,55 +233,7 @@
                                     
                                 </div>
                                 <!-- End Widget -->
-                                
-                                <!-- Widget -->
-                                <div class="widget">
-                                    
-                                    <h3 class="widget-title">Comments</h3>
-                                    
-                                    <div class="widget-body">
-                                        <ul class="clearlist widget-comments">
-                                            <li>
-                                                John Doe on <a href="#" title="">Lorem ipsum dolor sit amet</a>
-                                            </li>
-                                            <li>
-                                                Emma Johnson on <a href="#" title="">Suspendisse accumsan interdum tellus</a>
-                                            </li>
-                                            <li>
-                                                John Doe on <a href="#" title="">Praesent ultricies ut ipsum</a>
-                                            </li>
-                                            <li>
-                                                Mark Deen on <a href="#" title="">Vivamus malesuada vel nulla vulputate</a>
-                                            </li>
-                                            <li>
-                                                Sam Brin on <a href="#" title="">Aenean auctor egestas auctor</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    
-                                </div>
-                                <!-- End Widget -->
-                                
-                                <!-- Widget -->
-                                <div class="widget">
-                                    
-                                    <h3 class="widget-title">Text widget</h3>
-                                    
-                                    <div class="widget-body">
-                                        <div class="widget-text clearfix">
-                                            
-                                            <img src="{%  static 'images/blog/previews/post-prev-6.jpg' %}" alt="" width="100" class="left img-left">
-                                            
-                                            Consectetur adipiscing elit. Quisque magna ante eleifend eleifend. 
-                                            Purus ut dignissim consectetur, nulla erat ultrices purus, ut consequat sem elit non sem.
-                                            Quisque magna ante eleifend eleifend. 
-                                        
-                                        </div>
-                                    </div>
-                                    
-                                </div>                            
-                                <!-- End Widget -->
-                                
+
                                 <!-- Widget -->
                                 <div class="widget">
                                     
