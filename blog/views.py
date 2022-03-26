@@ -11,6 +11,7 @@ from taggit.models import Tag
 def post_list(request, tag_slug=None):
     object_list = Post.published.all()
     tag = None
+    all_tags = Tag.objects.all()
 
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
@@ -30,6 +31,7 @@ def post_list(request, tag_slug=None):
                   'blog/list.html',
                   {'page': page,
                    'posts': posts,
+                   'all_tags': all_tags,
                    'tag': tag})
 
 

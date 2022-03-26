@@ -24,17 +24,13 @@
                             <div class="col-md-4">
                                 <!-- Widget -->
                                 <div class="widget">
-
                                     <div class="widget-body">
                                         <div class="tags">
-                                            <a href="">Design</a>
-                                            <a href="">Portfolio</a>
-                                            <a href="">Digital</a>
-                                            <a href="">Branding</a>
-                                            <a href="">Theme</a>
-                                            <a href="">Clean</a>
-                                            <a href="">UI & UX</a>
-                                            <a href="">Love</a>
+                                            {% for tag in all_tags %}
+                                                <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                                                    {{ tag.name }}
+                                                </a>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
@@ -70,7 +66,15 @@
                                         </div>
 
                                         <div class="post-prev-info">
-                                            {{ post.author.first_name }} • {{ post.created|date:'Y-N-d' }} • Tags:  {{ post.tags.all|join:", " }}
+                                            {{ post.author.first_name }} •
+                                            {{ post.created|date:'Y-N-d' }} •
+                                            Tags:
+                                            {% for tag in post.tags.all %}
+                                                <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                                                    <u>{{ tag.name }}</u>
+                                                </a>
+                                                {% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
                                         </div>
 
                                         <div class="post-prev-text">
