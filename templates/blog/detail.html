@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{%  static 'css/enlighterjs.min.css' %}" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
 {% endblock additional_css %}
 
 {%  block content %}
@@ -64,11 +64,11 @@
                                 <div class="blog-item mb-80 mb-xs-40">
                                     
                                     <!-- Text -->
-        							<div class="blog-item-body" style="font-family: 'Open Sans', sans-serif;">
+        							<div class="blog-item-body" style="font-family: 'Montserrat', sans-serif;">
         							    <div class="mt-0 pt-0">
-                                            <h4 style="line-height: 1.5; font-weight: 100">
+                                            <h5 style="line-height: 1.5; font-weight: 100">
                                                 {{ post.body|safe }}
-                                            </h4>
+                                            </h5>
                                         </div>
                                         <!-- End Text -->   
         							</div>
@@ -105,7 +105,7 @@
         });
         let snippets = document.getElementsByClassName('enlighter');
         for (let s=0; s<snippets.length; s++) {
-            snippets[s].style.fontSize = 'large';
+            snippets[s].style.fontSize = '130%';
         }
     </script>
  {% endblock additional_js %}
