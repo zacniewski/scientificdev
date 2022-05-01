@@ -1,17 +1,16 @@
-# README #
+# Scientific Dev #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Settings, configurations, tips and other things related to [my site](https://scientificdev.net/).
 
-### What is this repository for? ###
+### Settings of the project ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* Instead single `settings.py` file I created separate folder named `settings` and settings for particular usages are there.  
+* For example - if I'd like to run development project on my PC:  
+```bash
+        python manage.py runserver --settings=settings.titan
+ ```
+where `titan.py` (derives from `base.py`) file for my PC,
 
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
 * Dependencies
 * Database configuration
 * How to run tests
