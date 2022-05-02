@@ -9,18 +9,14 @@ Settings, configurations, tips and other things related to [my site](https://sci
 ```bash
         python manage.py runserver --settings=settings.titan
  ```
-where `titan.py` (derives from `base.py`) file for my PC,
+where `titan.py` (derives from `base.py`) is the settings file for my PC,
 
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Switching working directories of my [Scientific Dev](https://scientificdev.net/) website ###
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
+* Old project was named `ModernBusiness` (due to name of the free Bootstrap template :smiley:),  
+* The new one is called `ScientificDev`,  
+* Names of the folders are the same as names of the aforementioned projects (with lowercase),  
+* The newer project was cloned next to old one, the latter will be removed after changes.  
 
 ### Who do I talk to? ###
 
