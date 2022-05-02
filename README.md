@@ -18,7 +18,24 @@ where `titan.py` (derives from `base.py`) is the settings file for my PC,
 * Names of the folders are the same as names of the aforementioned projects (with lowercase),  
 * The newer project was cloned next to old one, the latter will be removed after changes.  
 
-### 3. Nginx configuration ###
+
+### 3. uWSGI configuration ###
+
+* copy (with sudo) `scientificdev.conf` file to `/etc/nginx/sites-available/` (Nginx's directives),
+
+
+### 4. Nginx configuration ###
+
+* copy (with sudo) `scientificdev.conf` file to `/etc/nginx/sites-available/` (Nginx's directives),
+
+
+### 5. Nginx configuration ###
 
 * copy (with sudo) `scientificdev.conf` file to `/etc/nginx/sites-available/` (Nginx's directives),  
-* Other community or team contact
+* create symlink (with sudo) to aforementioned file in `/etc/nginx/sites-enabled/`:  
+```bash
+ln -s /etc/nginx/sites-available/scientificdev.conf scientificdev.conf
+```
+* remove old configuration file
+* add default_server in listen section,  
+* remove default files in 'sites-available' and 'sites-enabled' folders.
