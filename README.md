@@ -21,8 +21,11 @@ where `titan.py` (derives from `base.py`) is the settings file for my PC,
 
 ### 3. uWSGI configuration ###
 
-* copy (with sudo) `scientificdev.conf` file to `/etc/nginx/sites-available/` (Nginx's directives),
-
+* copy (with sudo) 'scientificdev.ini' file to `/etc/uwsgi/sites`:  
+```bash
+sudo cp config-files/scientificdev.ini /run/uwsgi/sites
+```
+* install the same version system-wide and in virtual environment: (pip install uwsgi),
 
 ### 4. Nginx configuration ###
 
