@@ -1,8 +1,7 @@
-from celery import Celery
 from celery.schedules import crontab
 from django.core.mail import EmailMessage
 
-app = Celery()
+from sd.celery import app
 
 
 @app.on_after_configure.connect
