@@ -23,3 +23,16 @@ def task_send_email_about_ebook():
                          ['a.zacniewski@interia.eu'])
     # email.content_subtype = "html"
     email.send(fail_silently=False)
+
+
+@app.task
+def check():
+    print("I am checking your stuff")
+
+
+app.conf.beat_schedule = {
+    "run-me-every-ten-seconds": {
+        "task": "tasks.check",
+        "schedule": 10.0
+        }
+    }
