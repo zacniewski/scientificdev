@@ -17,18 +17,9 @@ def task_send_email_about_ebook():
     email.send(fail_silently=False)
 
 
-@app.task
-def check():
-    print("I am checking your stuff")
-
-
 app.conf.beat_schedule = {
-    "run-me-every-ten-seconds": {
-        "task": "frontend.tasks.check",
-        "schedule": 10.0
-        },
     "task_send_email_about_ebook": {
         "task": "frontend.tasks.task_send_email_about_ebook",
-        "schedule": crontab(minute='*/2')
+        "schedule": crontab(hour=7, minute=5)
         }
     }
