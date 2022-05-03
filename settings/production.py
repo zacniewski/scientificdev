@@ -1,9 +1,20 @@
 from .base import *
+
 DEBUG = False
 ADMINS = (
     ('Artur Zacniewski', 'a.zacniewski@gmail.com'),
     )
 ALLOWED_HOSTS = ['.scientificdev.net']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+    }
+}
 
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
