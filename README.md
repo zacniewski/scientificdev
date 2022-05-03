@@ -109,5 +109,6 @@ pip install psycopg2-binary
 
 ### 6. Celery configuration ###
 * Celery worker and beat are managed by [Supervisor](https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps),  
+* The per-program configuration files for Supervisor programs are located in the `/etc/supervisor/conf.d` directory, typically running one program per file and ending in `.conf`,  
 * 
 
