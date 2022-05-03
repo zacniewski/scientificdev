@@ -66,7 +66,17 @@ WantedBy=multi-user.target
 
 * copy (with sudo) `uwsgi.service` file to `/etc/systemd/system/`
 * The `uwsgi` service is managed by [systemd](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units), 
-which is an init system and system manager (default for Ubuntu).  
+which is an init system and system manager (default for Ubuntu),  
+* to enable service to start automatically at boot:  
+```bash
+sudo systemctl enable uwsgi
+```    
+* check logs with `sudo journalctl -u uwsgi`.
+
+* to apply changes without rebooting:  
+```bash
+sudo systemctl restart uwsgi
+```
 
 ### 4. Nginx configuration ###
 
@@ -78,7 +88,16 @@ sudo ln -s /etc/nginx/sites-available/scientificdev.conf scientificdev.conf
 * remove old configuration file
 * add default_server in listen section,  
 * remove default files in 'sites-available' and 'sites-enabled' folders.
-* to be more reliable we used [Let's Encrypt SSL/TLS certificates with Nginx](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/).  
+* to be more reliable we used [Let's Encrypt SSL/TLS certificates with Nginx](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/),  
+* to enable service to start automatically at boot:  
+```bash
+sudo systemctl enable nginx
+```  
+
+* to apply changes without rebooting:  
+```bash
+sudo systemctl restart nginx
+```
 
 
 ### 5. Database configuration ###
