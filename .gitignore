@@ -53,3 +53,9 @@ my_env/
 
 # Secrets
 .env
+
+# Celery
+celerybeat-schedule
+
+# SQLite database
+db.sqlite3

@@ -4,14 +4,6 @@ from django.core.mail import EmailMessage
 from sd.celery import app
 
 
-@app.on_after_configure.connect
-def setup_periodic_tasks(sender, **kwargs):
-    sender.add_periodic_task(
-        crontab(minute='*/2'),
-        task_send_email_about_ebook.s(),
-    )
-
-
 @app.task
 def task_send_email_about_ebook():
     subject = 'Your free e-book from PacktPub is available!'
@@ -32,7 +24,11 @@ def check():
 
 app.conf.beat_schedule = {
     "run-me-every-ten-seconds": {
-        "task": "tasks.check",
+        "task": "frontend.tasks.check",
         "schedule": 10.0
+        },
+    "task_send_email_about_ebook": {
+        "task": "frontend.tasks.task_send_email_about_ebook",
+        "schedule": crontab(minute='*/2')
         }
     }
