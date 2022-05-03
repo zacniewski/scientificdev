@@ -29,7 +29,7 @@ CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/Warsaw'
 
-STATIC_ROOT = "/home/ubuntu/modernbusiness/staticfiles"
+STATIC_ROOT = "/home/ubuntu/scientificdev/staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/home/ubuntu/scientificdev/static/',
