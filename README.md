@@ -71,7 +71,7 @@ which is an init system and system manager (default for Ubuntu).
 ### 4. Nginx configuration ###
 
 * copy (with sudo) `scientificdev.conf` file to `/etc/nginx/sites-available/` (Nginx's directives),  
-* create symlink (with sudo) to aforementioned file in `/etc/nginx/sites-enabled/`:  
+* create [symlink](https://www.freecodecamp.org/news/symlink-tutorial-in-linux-how-to-create-and-remove-a-symbolic-link/) (with sudo) to aforementioned file in `/etc/nginx/sites-enabled/`:  
 ```bash
 sudo ln -s /etc/nginx/sites-available/scientificdev.conf scientificdev.conf
 ```
@@ -82,6 +82,9 @@ sudo ln -s /etc/nginx/sites-available/scientificdev.conf scientificdev.conf
 
 
 ### 5. Database configuration ###
+* 
 
-### 5. Celery configuration ###
+### 6. Celery configuration ###
+* Celery worker and beat are managed by [Supervisor](https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps),  
+* 
 
