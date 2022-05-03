@@ -105,7 +105,8 @@ sudo systemctl restart nginx
 ```bash
 pip install psycopg2-binary
 ```  
-* PostgreSQL must be installed in order to install `psycopg2` package` 
+* PostgreSQL must be installed in order to install `psycopg2` package,  
+* 
 
 ### 6. Celery configuration ###
 * Celery worker and beat are managed by [Supervisor](https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps),  
