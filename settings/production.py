@@ -31,7 +31,7 @@ CELERY_TIMEZONE = 'Europe/Warsaw'
 
 STATIC_ROOT = "/home/ubuntu/scientificdev/staticfiles"
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "staticfiles",
     '/home/ubuntu/scientificdev/static/',
 ]
 
