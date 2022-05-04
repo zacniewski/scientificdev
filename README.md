@@ -47,7 +47,7 @@ chmod-socket = 660
 vacuum = true
 ```
 
-* install uWSGI inside the virtual environment: `pip install uwsgi` and point to it in `uwsgi.service` file:  
+* install uWSGI inside the virtual environment: `pip install uwsgi` and point to it in `uwsgi.service` file, in the `ExecStart` line:    
 ```bash
 [Unit]
 Description=uWSGI Emperor service
@@ -105,11 +105,18 @@ sudo systemctl restart nginx
 ```bash
 pip install psycopg2-binary
 ```  
-* PostgreSQL must be installed in order to install `psycopg2` package,  
-* 
+* PostgreSQL must be [installed](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-20-04) before in order to install `psycopg2` package.
 
 ### 6. Celery configuration ###
 * Celery worker and beat are managed by [Supervisor](https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps),  
 * The per-program configuration files for Supervisor programs are located in the `/etc/supervisor/conf.d` directory, typically running one program per file and ending in `.conf`,  
-* 
+* In the `command` line of aforementioned files we have to point location of celery process inside our virtual environment:  
+    * for Celery worker (in scientific-celery-worker.conf file):  
+    ```bash
+    command=/home/ubuntu/scientificdev/my_env/bin/celery -A sd worker --loglevel=INFO
+    ```
+    * and for Celery beat (in scientific-celery-beat.conf file):  
+    ```bash
+    command=/home/ubuntu/scientificdev/my_env/bin/celery -A sd beat --loglevel=INFO
+    ```
 
