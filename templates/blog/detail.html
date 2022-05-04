@@ -28,7 +28,7 @@
                                         <div class="blog-item-data">
                                             <a href="#"><i class="fa fa-clock"></i> {{ post.created|date:'Y-N-d' }}</a>
                                             <span class="separator">&nbsp;</span>
-                                            <a href="#"><i class="fa fa-user"></i> {{ post.author }}</a>
+                                            <a href="#"><i class="fa fa-user"></i> {{ post.author.first_name }}</a>
                                             <span class="separator">&nbsp;</span>
                                             <i class="fa fa-folder-open"></i>
                                             {% for tag in post.tags.all %}
