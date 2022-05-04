@@ -122,5 +122,6 @@ pip install psycopg2-binary
 * Useful commands of Supervisor are:  
     * `sudo systemctl status supervisor` (status of supervisor service),  
     * `sudo supervisorctl reread` (look for any new or changed program configurations in the `/etc/supervisor/conf.d` directory),  
-    * `sudo supervisorctl update` (to confirm changes).
+    * `sudo supervisorctl update` (to confirm changes).  
+* Don't forget to delete your old configuration files (if exist) in the `/etc/supervisor/conf.d` directory!  
 
