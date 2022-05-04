@@ -55,7 +55,8 @@ my_env/
 .env
 
 # Celery
-celerybeat-schedule
+celerybeat-schedule.db
 
 # SQLite database
 db.sqlite3
+
