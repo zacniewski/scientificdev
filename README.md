@@ -118,5 +118,9 @@ pip install psycopg2-binary
     * and for Celery beat (in scientific-celery-beat.conf file):  
     ```bash
     command=/home/ubuntu/scientificdev/my_env/bin/celery -A sd beat --loglevel=INFO
-    ```
+    ```  
+* Useful commands of Supervisor are:  
+    * `sudo systemctl status supervisor` (status of supervisor service),  
+    * `sudo supervisorctl reread` (look for any new or changed program configurations in the `/etc/supervisor/conf.d` directory),  
+    * `sudo supervisorctl update` (to confirm changes).
 
