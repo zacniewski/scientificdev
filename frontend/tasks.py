@@ -26,6 +26,6 @@ def task_send_email_about_ebook():
 app.conf.beat_schedule = {
     "task_send_email_about_ebook": {
         "task": "frontend.tasks.task_send_email_about_ebook",
-        "schedule": crontab(hour=13, minute=35)
+        "schedule": crontab(hour=13, minute=40)
         }
     }
