@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from celery.schedules import crontab
 from django.core.mail import EmailMessage
 
+import frontend.tasks
 from sd.celery import app
 
 
@@ -23,9 +24,28 @@ def task_send_email_about_ebook():
     email.send(fail_silently=False)
 
 
+@app.task
+def task_send_chf_rate():
+    page = requests.get('https://internetowykantor.pl/kurs-franka/')
+    soup = BeautifulSoup(page.content, 'html.parser')
+    kurs_chf = soup.find('span', attrs={'data-rates-direction': 'sell'}).text.strip()
+    subject = "Kurs CHF"
+    message = f"Kurs CHF na dzisiaj to '{kurs_chf}'. \n"
+    email = EmailMessage(subject,
+                         message,
+                         'artur@scientificdev.net',
+                         ['a.zacniewski@interia.eu'])
+    email.content_subtype = "html"
+    email.send(fail_silently=False)
+
+
 app.conf.beat_schedule = {
     "task_send_email_about_ebook": {
         "task": "frontend.tasks.task_send_email_about_ebook",
         "schedule": crontab(hour=7, minute=5)
+        },
+    "task_send_chf_rate": {
+        "task": "frontend.tasks.task_send_chf_rate",
+        "schedule": crontab(hour=17, minute=13)
         }
     }
