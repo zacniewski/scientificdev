@@ -30,7 +30,7 @@ def task_send_chf_rate():
     soup = BeautifulSoup(page.content, 'html.parser')
     kurs_chf = soup.find('span', attrs={'data-rates-direction': 'sell'}).text.strip()
     subject = "Kurs CHF"
-    message = f"Kurs CHF na dzisiaj to '{kurs_chf}'. \n"
+    message = f"Kurs CHF na dzisiaj to {kurs_chf} zł. \n"
     email = EmailMessage(subject,
                          message,
                          'artur@scientificdev.net',
