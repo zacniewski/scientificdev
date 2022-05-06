@@ -46,6 +46,6 @@ app.conf.beat_schedule = {
         },
     "task_send_chf_rate": {
         "task": "frontend.tasks.task_send_chf_rate",
-        "schedule": crontab(hour=17, minute=13)
+        "schedule": crontab(hour=7, minute=10)
         }
     }
