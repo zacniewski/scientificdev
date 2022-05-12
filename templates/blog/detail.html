@@ -12,78 +12,78 @@
 
     <main id="main">
             
-                <!-- Home Section -->
-                <section class="small-section bg-dark-alfa-50 bg-scroll light-content" data-background="{%  static 'images/full-width-images/section-bg-19.jpg' %}" id="home">
-                    <div class="container relative pt-70">
-                    
-                        <div class="row">
-                            
-                            <div class="col-md-8">
-                                <div class="wow fadeInUpShort" data-wow-delay=".1s">
-                                    <h1 class="hs-line-7 mb-40 mb-xs-20">{{  post.title }}</h1>
-                                </div>
-                                <div class="wow fadeInUpShort" data-wow-delay=".2s">
-                                    <div class="mb-20 mb-xs-0">
-                                        <!-- Author, Categories, Comments -->
-                                        <div class="blog-item-data">
-                                            <a href="#"><i class="fa fa-clock"></i> {{ post.created|date:'Y-N-d' }}</a>
-                                            <span class="separator">&nbsp;</span>
-                                            <a href="#"><i class="fa fa-user"></i> {{ post.author.first_name }}</a>
-                                            <span class="separator">&nbsp;</span>
-                                            <i class="fa fa-folder-open"></i>
-                                            {% for tag in post.tags.all %}
-                                                <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
-                                                    <u>{{ tag.name }}</u>
-                                                </a>
-                                                {% if not forloop.last %}, {% endif %}
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-                </section>
-                <!-- End Home Section -->
-                
-                
-                <!-- Section -->
-                <section class="page-section bg-dark light-content">
-                    <div class="container relative">
-                        
-                        <div class="row">
-                            
-                            <!-- Content -->
-                            <div class="col-lg-8 offset-lg-2 mb-sm-80">
-                                
-                                <!-- Post -->
-                                <div class="blog-item mb-80 mb-xs-40">
-                                    
-                                    <!-- Text -->
-        							<div class="blog-item-body">
-        							    <div class="mt-0 pt-0">
-                                            <h5 style="line-height: 1.5; font-weight: 100">
-                                                {{ post.body|safe }}
-                                            </h5>
-                                        </div>
-                                        <!-- End Text -->   
-        							</div>
-                                    <!-- End Text -->
-        							
-        						</div>
-        						<!-- End Post -->
+        <!-- Home Section -->
+        <section class="small-section bg-dark-alfa-50 bg-scroll light-content" data-background="{%  static 'images/full-width-images/section-bg-19.jpg' %}" id="home">
+            <div class="container relative pt-70">
 
-                            </div>
-                            <!-- End Content -->                            
-                        
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <div class="wow fadeInUpShort" data-wow-delay=".1s">
+                            <h1 class="hs-line-7 mb-40 mb-xs-20">{{  post.title }}</h1>
                         </div>
-                        
+                        <div class="wow fadeInUpShort" data-wow-delay=".2s">
+                            <div class="mb-20 mb-xs-0">
+                                <!-- Author, Categories, Comments -->
+                                <div class="blog-item-data">
+                                    <a href="#"><i class="fa fa-clock"></i> {{ post.created|date:'Y-N-d' }}</a>
+                                    <span class="separator">&nbsp;</span>
+                                    <a href="#"><i class="fa fa-user"></i> {{ post.author.first_name }}</a>
+                                    <span class="separator">&nbsp;</span>
+                                    <i class="fa fa-folder-open"></i>
+                                    {% for tag in post.tags.all %}
+                                        <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                                            <u>{{ tag.name }}</u>
+                                        </a>
+                                        {% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </section>
-                <!-- End Section -->                
-                
-            </main>
+                </div>
+
+            </div>
+        </section>
+        <!-- End Home Section -->
+
+
+        <!-- Section -->
+        <section class="page-section bg-dark light-content">
+            <div class="container relative">
+
+                <div class="row">
+
+                    <!-- Content -->
+                    <div class="col-lg-10 offset-lg-1 mb-sm-80">
+
+                        <!-- Post -->
+                        <div class="blog-item mb-80 mb-xs-40">
+
+                            <!-- Text -->
+                            <div class="blog-item-body">
+                                <div class="mt-0 pt-0">
+                                    <h5 style="line-height: 1.5; font-weight: 100">
+                                        {{ post.body|safe }}
+                                    </h5>
+                                </div>
+                                <!-- End Text -->
+                            </div>
+                            <!-- End Text -->
+
+                        </div>
+                        <!-- End Post -->
+
+                    </div>
+                    <!-- End Content -->
+
+                </div>
+
+            </div>
+        </section>
+        <!-- End Section -->
+
+    </main>
             
 {%  endblock content %}
 
