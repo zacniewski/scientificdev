@@ -22,7 +22,7 @@ where `titan.py` (derives from `base.py`) is the settings file for my PC,
 
 * copy (with sudo) 'scientificdev.ini' file to `/etc/uwsgi/sites`:  
 ```bash
-sudo cp config-files/scientificdev.ini /run/uwsgi/sites
+sudo cp config-files/scientificdev.ini /etc/uwsgi/sites
 ```
 
 * be careful with the names of folders and project inside `scientificdev.ini` file:  
@@ -85,10 +85,12 @@ sudo systemctl restart uwsgi
 ```bash
 sudo ln -s /etc/nginx/sites-available/scientificdev.conf scientificdev.conf
 ```
-* remove old configuration file
+* remove old configuration file and its symlink,  
 * add default_server in listen section,  
 * remove default files in 'sites-available' and 'sites-enabled' folders.
-* to be more reliable we used [Let's Encrypt SSL/TLS certificates with Nginx](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/),  
+* to be more reliable we used (old version) - [Let's Encrypt SSL/TLS certificates with Nginx](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/),  
+* newer versio (June 2022) for Ubuntu 20.04 is [here](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04),  
+* in newer version there's no need to renew certificate manually, it is done by `certbot` service two times a day,  
 * to enable service to start automatically at boot:  
 ```bash
 sudo systemctl enable nginx
@@ -98,7 +100,10 @@ sudo systemctl enable nginx
 ```bash
 sudo systemctl restart nginx
 ```
-
+* to check syntax errors:  
+```bash
+sudo nginx -t
+``` 
 
 ### 5. Database configuration ###
 * the PostgreSQL database is used, so `psycopg2` package must be installed in active virtual environment:  
@@ -165,3 +170,17 @@ sudo service postgresql restart
 * change password for the `root` user: `passwd`,  
 * remove [snap](https://www.debugpoint.com/2022/04/remove-snap-ubuntu/) and its packages,  
 * install dependencies for OpenCV (scripts are in `config-files` folder),  
+* my domain is already configured under IP given from OVH vendor,  
+* install web server [Nginx](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04),  
+* generate new [SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) and [add](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) it to your git account,  
+* clone the repo to your remote machine,  
+* install Certbot and [configure](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04) Let's Encrypt Certificate Authority (CA),  
+* jump to #4 for more details about configuring Nginx,  
+* create virtual environment inside project's folder,  
+* activate it and install dependencies from `requirements.txt` file:  
+ ```bash
+   pip install -r requirements.txt
+ ```
+* install PostgreSQL (look into #7) and create database with proper name and the owner,  
+* create `.env` file with credentials
+* make migrations
