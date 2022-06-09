@@ -138,6 +138,18 @@ pg_dump -U dbartur scientificdevdb > sdexport.sql
 
 * Before you must create database with the same name and the same user like was on your remote machine,
 
+* Sometimes you may need to edit `sudo nano /etc/postgresql/14/main/pg_hba.conf` file, 
+and change  `# Database administrative login by Unix domain socket` or/and `# "local" is for Unix domain socket connections only` from `peer` to `md5`:    
+
+```bash
+# Database administrative login by Unix domain socket
+local   all             postgres                                md5
+
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+
+# "local" is for Unix domain socket connections only
+local   all             all                                     md5
+```
 * To restore database objects from file:  
 ```bash
 psql -U dbartur -d scientificdevdb -f sdexport.sql
