@@ -186,4 +186,9 @@ sudo service postgresql restart
 * make migrations,  
 * install [Supervisor](https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps),  
 * copy Celery files (look into #6) to Supervisor's folder,  
+* update/add your SSH keys:  
+```bash
+ssh-keygen -f "/home/artur/.ssh/known_hosts" -R "www.scientificdev.net"
+```
+* and then connect via SSH with the domain name instead of IP address,  
 * restart your VPS :smiley:
