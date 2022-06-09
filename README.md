@@ -159,3 +159,9 @@ psql -U dbartur -d scientificdevdb -f sdexport.sql
 ```bash
 sudo service postgresql restart
 ```
+
+### 8. Fresh installation of the VPS's system (June 2022) ###
+* Change Ubuntu 18.04 into [Ubuntu](https://ubuntu.com/about/release-cycle) 20.04 LTS,  
+* change password for the `root` user: `passwd`,  
+* remove [snap](https://www.debugpoint.com/2022/04/remove-snap-ubuntu/) and its packages,  
+* install dependencies for OpenCV (scripts are in `config-files` folder),  
