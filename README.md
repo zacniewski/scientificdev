@@ -183,4 +183,7 @@ sudo service postgresql restart
  ```
 * install PostgreSQL (look into #7) and create database with proper name and the owner,  
 * create `.env` file with credentials
-* make migrations
+* make migrations,  
+* install [Supervisor](https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps),  
+* copy Celery files (look into #6) to Supervisor's folder,  
+* restart your VPS :smiley:
