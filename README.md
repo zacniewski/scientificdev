@@ -125,3 +125,25 @@ pip install psycopg2-binary
     * `sudo supervisorctl update` (to confirm changes).  
 * Don't forget to delete your old configuration files (if exist) in the `/etc/supervisor/conf.d` directory!  
 
+### 7. Dump and restore of PostgreSQL database ###
+* Dump your database on remote machine:  
+```bash
+pg_dump -U dbartur scientificdevdb > sdexport.sql
+```
+* Copy file with dumped database to your local machine:  
+```bash
+ scp root@www.scientificdev.net:/home/ubuntu/sdexport.sql sdexport.sql
+```
+* Don't forget to create `postgres` user on [Linux system](https://linuxhint.com/postgresql_installation_guide_ubuntu_20-04/) with the safe password,  
+
+* Before you must create database with the same name and the same user like was on your remote machine,
+
+* To restore database objects from file:  
+```bash
+psql -U dbartur -d scientificdevdb -f sdexport.sql
+```
+
+* To restart PostgreSQL service:  
+```bash
+sudo service postgresql restart
+```
