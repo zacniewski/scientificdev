@@ -4,7 +4,7 @@ DEBUG = False
 ADMINS = (
     ('Artur Zacniewski', 'a.zacniewski@gmail.com'),
     )
-ALLOWED_HOSTS = ['.scientificdev.net']
+ALLOWED_HOSTS = ['.scientificdev.net', '54.38.54.237']
 
 DATABASES = {
     'default': {
