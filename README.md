@@ -187,6 +187,7 @@ sudo service postgresql restart
 * create superuser,  
 * install [Supervisor](https://www.digitalocean.com/community/tutorials/how-to-install-and-manage-supervisor-on-ubuntu-and-debian-vps),  
 * copy Celery files (look into #6) to Supervisor's folder,  
+* install message broker, in my case it's [Rabbit MQ](https://www.rabbitmq.com/),  
 * update/add your SSH keys:  
 ```bash
 ssh-keygen -f "/home/artur/.ssh/known_hosts" -R "www.scientificdev.net"
