@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 from celery.schedules import crontab
 from django.core.mail import EmailMessage
 
-import frontend.tasks
 from sd.celery import app
 
 
