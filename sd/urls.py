@@ -25,6 +25,8 @@ urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
 ]
 
+handler404 = 'frontend.views.handler404'
+handler500 = 'frontend.views.handler500'
 
 if my_settings.DEBUG:
     urlpatterns += static(my_settings.MEDIA_URL, document_root=my_settings.MEDIA_ROOT)
