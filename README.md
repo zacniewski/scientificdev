@@ -194,4 +194,10 @@ sudo service postgresql restart
 ssh-keygen -f "/home/artur/.ssh/known_hosts" -R "www.scientificdev.net"
 ```
 * and then connect via SSH with the domain name instead of IP address,  
+* for greater security install following packages and allow SSH connections:  
+```bash
+sudo apt install fail2ban iptables ufw
+sudo ufw enable
+sudo ufw allow ssh
+```
 * restart your VPS :smiley:
