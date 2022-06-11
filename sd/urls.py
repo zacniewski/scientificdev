@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls', namespace='blog')),
     path('', include('frontend.urls', namespace='frontend')),
+    path('newsletter/', include('newsletter.urls', namespace='newsletter')),
     path('tinymce/', include('tinymce.urls')),
 ]
 
