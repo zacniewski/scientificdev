@@ -53,7 +53,7 @@ def newsletter_subscribe(request):
                 instance.save()
                 token = token_generator(email_of_subscriber)
                 subscription_confirmation_url = request.build_absolute_uri(
-                    reverse('newsletters:subscription_confirmation')) + "?token=" + token
+                    reverse('newsletter:subscription_confirmation')) + "?token=" + token
                 messages.success(request, 'You are almost subscribed to the newsletter!')
                 print(subscription_confirmation_url)
                 send_subscription_email(email_of_subscriber, subscription_confirmation_url)

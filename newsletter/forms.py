@@ -8,11 +8,13 @@ class SubscriberForm(ModelForm):
         fields = ('email_of_subscriber',)
         widgets = {
             'email_of_subscriber': TextInput(attrs={'placeholder': 'Enter your e-mail',
-                                                    'class': 'uk-input uk-form-large uk-width-1-1',
+                                                    'class': 'newsletter-field input-lg round',
                                                     'type': 'email',
+                                                    'pattern': '.{5,100}',
+                                                    'required': 'true',
+                                                    'aria-required': 'true'
                                                     }),
         }
-
 
 class UnsubscriberForm(Form):
     email_of_subscriber = EmailField()
