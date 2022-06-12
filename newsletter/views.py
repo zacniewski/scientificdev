@@ -66,7 +66,7 @@ def newsletter_subscribe(request):
             form = SubscriberForm()
     else:
         form = SubscriberForm()
-    return render(request, 'newsletters/subscribe_form.html', {'form': form})
+    return render(request, 'newsletter/newsletter-subscribe.html', {'form': form})
 
 
 def send_subscription_email(email, subscription_confirmation_url):

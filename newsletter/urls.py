@@ -4,7 +4,7 @@ from . import views
 app_name = 'newsletter'
 
 urlpatterns = [
-    path('subscribe/', views.newsletter_subscribe, name='subscribe'),
+    path('subscribe/', views.newsletter_subscribe, name='newsletter_subscribe'),
     # path('unsubscribe/', views.newsletter_unsubscribe, name='unsubscribe'),
     # path('subscribe-confirmed/<email>', views.newsletter_confirmation, name='newsletter_confirmation'),
     # path('unsubscribe-confirmed/<email>', views.unnewsletter_confirmation, name='unnewsletter_confirmation'),
