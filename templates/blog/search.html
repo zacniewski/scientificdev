@@ -18,9 +18,10 @@
                         <div class="wow fadeInUpShort" data-wow-delay=".2s">
                             <p class="hs-line-6 opacity-075 mb-20 mb-xs-0">
                                 I share some of my ideas here ...
+                            </p>
 
 
-                                {% if results %}
+                            {% if results %}
                                     <div class="uk-section uk-section-medium">
                                         <div class="uk-container uk-container-medium uk-text-center">
                                             <h1 class="page-title"> Posts containing "{{ query }}" </h1>
@@ -29,14 +30,14 @@
                                                     Found {{ total_results }} result{{ total_results|pluralize }}
                                                 </h2>
                                              {% endwith %}
-                                {%  else %}
+                            {%  else %}
                                     <p> Nothing found</p>
-                                {%  endif %}
+                            {%  endif %}
 
 
-                            </p>
-                        </div>
-                    </div>
+                                        </div>
+                                    </div>
+
                     <div class="col-md-4">
                         <!-- Widget -->
                         <div class="widget">
@@ -52,6 +53,8 @@
 
                         </div>
                         <!-- End Widget -->
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
