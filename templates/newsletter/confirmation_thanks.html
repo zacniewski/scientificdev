@@ -1,14 +1,51 @@
-<!DOCTYPE html>
 {%  extends 'base.html' %}
 {%  load static %}
 
 {%  block content %}
     {% for message in messages %}
-        <div class="uk-text-center uk-{{ message.tags }}" uk-alert style="font-size: 1.5rem;">
-            <a style="color: black;" class="uk-alert-close" uk-close></a>
-        {{ message }}
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            {%  if 'alert-success' in  message.tags  %}
+                <i class="fa fa-check-circle"></i>
+            {%  endif %}
+            {%  if 'alert-danger' in  message.tags  %}
+                <i class="fa fa-times-circle"></i>
+            {%  endif %}
+            {%  if 'alert-info' in  message.tags  %}
+                <i class="fa fa-info-circle"></i>
+            {%  endif %}
+            {{ message }}
+             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     {% endfor %}
 
-   <h1 class="page-title"> Thanks for subscribing &hearts; </h1>
+    <main id="main">
+
+        <!-- Home Section -->
+        <section class="home-section bg-dark-alfa-70 parallax-5" data-background="{%  static 'images/full-width-images/section-bg-13.jpg' %}" id="home">
+            <div class="container min-height-100vh d-flex align-items-center pt-100 pb-100">
+
+                <!-- Hero Content -->
+                <div class="home-content">
+                    <div class="hs-wrap">
+                        <div class="wow fadeInUpShort" data-wow-delay=".1s">
+                            <h1 class="hs-line-1 opacity-085 mb-40 mb-xs-20">404</h1>
+                        </div>
+                        <div class="wow fadeInUpShort" data-wow-delay=".2s">
+                            <h1 class="hs-line-6 opacity-07">
+                                Thanks for subscribing &hearts;
+                            </h1>
+                        </div>
+                        <div class="local-scroll wow fadeInUpShort" data-wow-delay=".3s">
+                            <a href="{% url 'frontend:index' %}" class="btn btn-mod btn-w btn-round btn-small"><i class="fa fa-angle-left"></i> Back To Home Page</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Hero Content -->
+
+            </div>
+        </section>
+        <!-- End Home Section -->
+
+    </main>
+
 {%  endblock content %}
