@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{%  extends 'base.html' %}
+{%  load static %}
+
+{%  block content %}
+    {% for message in messages %}
+        <div class="uk-text-center uk-{{ message.tags }}" uk-alert style="font-size: 1.5rem;">
+            <a style="color: black;" class="uk-alert-close" uk-close></a>
+        {{ message }}
+        </div>
+    {% endfor %}
+
+   <h1 class="page-title"> Thanks for subscribing &hearts; </h1>
+{%  endblock content %}

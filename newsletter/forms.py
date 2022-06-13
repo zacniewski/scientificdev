@@ -16,5 +16,6 @@ class SubscriberForm(ModelForm):
                                                     }),
         }
 
+
 class UnsubscriberForm(Form):
     email_of_subscriber = EmailField()

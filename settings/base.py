@@ -23,6 +23,7 @@ LOWER_BASE_DIR = Path(__file__).resolve().parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+ENCRYPT_KEY = config('ENCRYPT_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

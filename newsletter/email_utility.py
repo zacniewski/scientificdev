@@ -3,7 +3,7 @@ import base64
 import logging
 from time import time
 import traceback
-from django.conf import settings
+from django.conf import settings as proj_settings
 
 # this is your "password/ENCRYPT_KEY". keep it in settings.py file
 # key = Fernet.generate_key()
@@ -14,7 +14,7 @@ def encrypt(txt):
         # convert integer etc to string first
         txt = str(txt)
         # get the key from settings
-        cipher_suite = Fernet(settings.ENCRYPT_KEY.encode('ascii'))  # key should be byte
+        cipher_suite = Fernet(proj_settings.ENCRYPT_KEY.encode('ascii'))  # key should be byte
         # #input should be byte, so convert the text to byte
         encrypted_text = cipher_suite.encrypt(txt.encode('ascii'))
         # encode to urlsafe base64 format
@@ -30,7 +30,7 @@ def decrypt(txt):
     try:
         # base64 decode
         txt = base64.urlsafe_b64decode(txt)
-        cipher_suite = Fernet(settings.ENCRYPT_KEY)
+        cipher_suite = Fernet(proj_settings.ENCRYPT_KEY)
         decoded_text = cipher_suite.decrypt(txt).decode("ascii")
         return decoded_text
     except Exception:

@@ -33,7 +33,7 @@ def newsletter_subscribe(request):
         else:
             if Subscriber.objects.filter(email_of_subscriber=email_of_subscriber).exists():
                 messages.warning(request, 'This email is already subscribed!')
-                return redirect('about')
+                return redirect('newsletter:newsletter_subscribe')
             if check_disposability_of_email:
                 messages.error(request, 'This email is forbidden!')
                 return redirect('about')
@@ -54,10 +54,10 @@ def newsletter_subscribe(request):
                 token = token_generator(email_of_subscriber)
                 subscription_confirmation_url = request.build_absolute_uri(
                     reverse('newsletter:subscription_confirmation')) + "?token=" + token
-                messages.success(request, 'You are almost subscribed to the newsletter!')
+                messages.success(request, 'You are almost subscribed to the newsletter, check your mailbox!')
                 print(subscription_confirmation_url)
                 send_subscription_email(email_of_subscriber, subscription_confirmation_url)
-                return redirect('about')
+                return redirect('newsletter:newsletter_subscribe')
             # if bad reCaptcha
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please try again.')
@@ -69,6 +69,47 @@ def newsletter_subscribe(request):
     return render(request, 'newsletter/newsletter-subscribe.html', {'form': form})
 
 
+def subscription_confirmation(request):
+    if request.method == "POST":
+        raise Http404
+
+    token = request.GET.get("token", None)
+
+    if not token:
+        logging.getLogger("warning").warning("Invalid Link ")
+        messages.error(request, "Invalid Link")
+        return HttpResponseRedirect(reverse('newsletter:newsletter_subscribe'))
+
+    token = decrypt(token)
+    if token:
+        token = token.split('SEPARATOR')
+        email = token[0]
+        initiate_time = token[1]  # time when email was sent , in epoch format. can be used for later calculations
+        current_time = time()
+        print("initiate_time =", type(float(initiate_time)))
+        print("current time =", type(current_time))
+        print("Difference in seconds = ", current_time - float(initiate_time))
+        try:
+            subscribe_model_instance = Subscriber.objects.get(email_of_subscriber=email)
+            # if user clicks confirmation link again
+            if subscribe_model_instance.status == "Confirmed":
+                messages.success(request, "Your subscription is already confirmed!")
+            else:
+                subscribe_model_instance.status = "Confirmed"
+                subscribe_model_instance.updated_date = now()
+                subscribe_model_instance.save()
+                messages.success(request, "Subscription confirmed!")
+                return HttpResponseRedirect(reverse('newsletter:newsletter_confirmation', args=[email]))
+
+        except ObjectDoesNotExist as e:
+            logging.getLogger("warning").warning(traceback.format_exc())
+            messages.error(request, "Invalid Link")
+    else:
+        logging.getLogger("warning").warning("Invalid token ")
+        messages.error(request, "Invalid Link")
+    return redirect('newsletter:newsletter_subscribe')
+
+
 def send_subscription_email(email, subscription_confirmation_url):
     data = dict()
     data["confirmation_url"] = subscription_confirmation_url
@@ -77,10 +118,14 @@ def send_subscription_email(email, subscription_confirmation_url):
     data["project_name"] = "Scientific Dev"
     data["site_url"] = "https://www.scientificdev.net"
     data["contact_us_url"] = "https://www.scientificdev.net/contact/"
-    template = get_template("newsletters/subscription_mail.html")
+    template = get_template("newsletter/subscription_mail.html")
     data["html_text"] = template.render(data)
     data["plain_text"] = strip_tags(data["html_text"])
     email_message = EmailMessage(data["subject"], data["plain_text"], 'artur@scientificdev.net',
                                  [data['email']])
     email_message.send(fail_silently=False)
     return True
+
+
+def newsletter_confirmation(request, email):
+    return render(request, 'newsletter/confirmation_thanks.html', {'email': email})
