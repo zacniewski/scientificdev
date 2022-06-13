@@ -1,3 +1,4 @@
+from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage,\
@@ -7,11 +8,30 @@ from django.views.generic import ListView
 from .models import Post
 from taggit.models import Tag
 
+from .forms import SearchForm
+
 
 def post_list(request, tag_slug=None):
+    form = SearchForm()
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            search_vector = SearchVector('title', 'body')
+            search_query = SearchQuery(query)
+            results = Post.objects.annotate(
+                search=search_vector,
+                rank=SearchRank(search_vector, search_query)
+                ).filter(search=search_query).order_by('-rank')
     object_list = Post.published.all()
     tag = None
     all_tags = Tag.objects.all()
+    queryset_of_tags = all_tags.annotate(num_times=Count('taggit_taggeditem_items'))
+    tag_dict = {}
+    for tag in queryset_of_tags:
+        tag_dict[tag.name] = tag.num_times
 
     if tag_slug:
         tag = get_object_or_404(Tag, slug=tag_slug)
@@ -32,7 +52,11 @@ def post_list(request, tag_slug=None):
                   {'page': page,
                    'posts': posts,
                    'all_tags': all_tags,
-                   'tag': tag})
+                   'tag': tag,
+                   'tag_dict': tag_dict,
+                   'form': form,
+                   'query': query,
+                   'results': results})
 
 
 def post_detail(request, year, month, day, post):
@@ -59,4 +83,26 @@ class PostListView(ListView):
     queryset = Post.published.all()
     context_object_name = 'posts'
     paginate_by = 3
-    template_name = 'blog/post/list.html'
+    template_name = 'blog/list.html'
+
+
+def post_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            search_vector = SearchVector('title', 'body')
+            search_query = SearchQuery(query)
+            results = Post.objects.annotate(
+                search=search_vector,
+                rank=SearchRank(search_vector, search_query)
+            ).filter(search=search_query).order_by('-rank')
+
+    return render(request,
+                  'blog/search.html',
+                  {'form': form,
+                   'query': query,
+                   'results': results})

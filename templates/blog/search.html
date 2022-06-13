@@ -13,11 +13,27 @@
 
                     <div class="col-md-8">
                         <div class="wow fadeInUpShort" data-wow-delay=".1s">
-                            <h1 class="hs-line-7 mb-20 mb-xs-10">Blog</h1>
+                            <h1 class="hs-line-7 mb-20 mb-xs-10">Search results</h1>
                         </div>
                         <div class="wow fadeInUpShort" data-wow-delay=".2s">
                             <p class="hs-line-6 opacity-075 mb-20 mb-xs-0">
                                 I share some of my ideas here ...
+
+
+                                {% if results %}
+                                    <div class="uk-section uk-section-medium">
+                                        <div class="uk-container uk-container-medium uk-text-center">
+                                            <h1 class="page-title"> Posts containing "{{ query }}" </h1>
+                                             {% with results.count as total_results %}
+                                                <h2 class="post-card-title">
+                                                    Found {{ total_results }} result{{ total_results|pluralize }}
+                                                </h2>
+                                             {% endwith %}
+                                {%  else %}
+                                    <p> Nothing found</p>
+                                {%  endif %}
+
+
                             </p>
                         </div>
                     </div>
@@ -41,6 +57,7 @@
             </div>
         </section>
         <!-- End Home Section -->
+
 
         <!-- Section -->
         <section class="page-section bg-dark light-content">

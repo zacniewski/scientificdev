@@ -6,7 +6,7 @@ class SearchForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 'placeholder': 'What to look for?',
-                'class': 'uk-search-input',
+                'class': 'form-control search-field round',
                 'type': 'search',
             }
         )
