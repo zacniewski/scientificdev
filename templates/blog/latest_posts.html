@@ -1,0 +1,22 @@
+<ul class="clearlist widget-posts">
+    {% for post in latest_posts %}
+        <li class="clearfix">
+            <a href="{{ post.get_absolute_url }}">
+                <img src="{{ post.photo.url }}"
+                     alt=""
+                     width="100"
+                     class="widget-posts-img"
+                />
+            </a>
+            <div class="widget-posts-descr">
+                <a href="{{ post.get_absolute_url }}"
+                   title="{{ post.title }}"
+                >
+                    {{ post.title }}
+                </a>
+
+                Posted by {{ post.author.first_name }}, {{ post.created|date:'d N' }}
+            </div>
+        </li>
+    {% endfor %}
+</ul>
