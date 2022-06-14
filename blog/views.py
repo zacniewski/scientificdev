@@ -1,5 +1,6 @@
 from django.contrib.postgres.search import SearchVector, SearchQuery, SearchRank
-from django.db.models import Count
+from django.db.models import Count, Q
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage,\
                                   PageNotAnInteger
@@ -77,6 +78,14 @@ def post_detail(request, year, month, day, post):
                   'blog/detail.html',
                   {'post': post,
                    'similar_posts': similar_posts})
+
+
+def post_archive(request, year, month):
+    year_month_posts = Post.objects.filter(publish__year=year).filter(publish__month=month)
+    return render(request, 'blog/archive.html',
+                  {'year_month_posts': year_month_posts,
+                   'year': year,
+                   'month': month})
 
 
 class PostListView(ListView):

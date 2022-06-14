@@ -14,11 +14,11 @@
 
                     <div class="col-md-8">
                         <div class="wow fadeInUpShort" data-wow-delay=".1s">
-                            <h1 class="hs-line-7 mb-20 mb-xs-10">Blog</h1>
+                            <h1 class="hs-line-7 mb-20 mb-xs-10">Archive posts</h1>
                         </div>
                         <div class="wow fadeInUpShort" data-wow-delay=".2s">
                             <p class="hs-line-6 opacity-075 mb-20 mb-xs-0">
-                                I share some of my ideas here ...
+                                written in {{ month|str_to_month_name }} of {{ year }}
                             </p>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
 
                         <div class="row">
                             <!-- My Post Items -->
-                            {% for post in posts %}
+                            {% for post in year_month_posts %}
                                 <div class="col-sm-6 mb-60 mb-xs-40">
 
                                 <div class="post-prev-img">
@@ -141,29 +141,6 @@
 
                             <div class="widget-body">
                                 {% show_latest_posts 5 %}
-                            </div>
-
-                        </div>
-                        <!-- End Widget -->
-
-                        <!-- Widget -->
-                        <div class="widget">
-
-                            <h3 class="widget-title">Archive</h3>
-
-                            <div class="widget-body">
-                                <ul class="clearlist widget-menu">
-                                    {% regroup posts by publish|date:"Y" as year_list %}
-                                        {% for year in year_list %}
-                                            {% regroup year.list by publish|date:"n" as month_list %}
-                                            {% for month in month_list %}
-                                                <li>
-                                                    <a href="{%  url 'blog:post_archive' year.grouper month.grouper %}">{{ month.grouper|int_to_month_name}} {{ year.grouper }}
-                                                    </a>
-                                                </li>
-                                            {% endfor %}
-                                        {% endfor %}
-                                </ul>
                             </div>
 
                         </div>
