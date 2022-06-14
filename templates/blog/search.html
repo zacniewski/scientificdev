@@ -1,4 +1,5 @@
 {%  extends 'base.html' %}
+{%  load blog_tags %}
 {%  load static %}
 
 {%  block content %}
@@ -157,43 +158,7 @@
                             <h3 class="widget-title">Latest posts</h3>
 
                             <div class="widget-body">
-                                <ul class="clearlist widget-posts">
-                                    <li class="clearfix">
-                                        <a href=""><img src="{%  static 'images/blog/previews/post-prev-1.jpg' %}" alt="" width="100" class="widget-posts-img" /></a>
-                                        <div class="widget-posts-descr">
-                                            <a href="#" title="">Minimalistic Design Forever</a>
-                                            Posted by John Doe 7 March
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <a href=""><img src="{%  static 'images/blog/previews/post-prev-2.jpg' %}" alt="" width="100" class="widget-posts-img" /></a>
-                                        <div class="widget-posts-descr">
-                                            <a href="#" title="">Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit</a>
-                                            Posted by John Doe 7 March
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <a href=""><img src="{%  static 'images/blog/previews/post-prev-3.jpg' %}" alt="" width="100" class="widget-posts-img" /></a>
-                                        <div class="widget-posts-descr">
-                                            <a href="#" title="">New Web Design Trends in 2021 Year</a>
-                                            Posted by John Doe 7 March
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <a href=""><img src="{%  static 'images/blog/previews/post-prev-4.jpg' %}" alt="" width="100" class="widget-posts-img" /></a>
-                                        <div class="widget-posts-descr">
-                                            <a href="#" title="">Hipster’s Style in Web Design and Logo</a>
-                                            Posted by John Doe 7 March
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <a href=""><img src="{%  static 'images/blog/previews/post-prev-5.jpg' %}" alt="" width="100" class="widget-posts-img" /></a>
-                                        <div class="widget-posts-descr">
-                                            <a href="#" title="">Duis Tristique Condimentum Nulla Bibendum Consectetu</a>
-                                            Posted by John Doe 7 March
-                                        </div>
-                                    </li>
-                                </ul>
+                                {% show_latest_posts 5 %}
                             </div>
 
                         </div>
