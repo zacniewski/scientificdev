@@ -8,49 +8,43 @@
         <!-- Home Section -->
         <section class="small-section bg-dark-alfa-50 bg-scroll light-content" data-background="{%  static 'images/full-width-images/section-bg-19.jpg' %}" id="home">
             <div class="container relative pt-70">
+
                 <div class="row">
+
                     <div class="col-md-8">
                         <div class="wow fadeInUpShort" data-wow-delay=".1s">
-                            <h1 class="hs-line-7 mb-20 mb-xs-10">Search results of "{{ query }}"</h1>
+                            <h1 class="hs-line-7 mb-20 mb-xs-10">Search results of {{ query }}</h1>
                         </div>
                         <div class="wow fadeInUpShort" data-wow-delay=".2s">
-
-                            {% if results %}
-                                <div class="uk-section uk-section-medium">
-                                    <div class="uk-container uk-container-medium uk-text-center">
-                                        <h1 class="page-title"> Posts containing "{{ query }}" </h1>
-                                         {% with results.count as total_results %}
-                                            <h2 class="post-card-title">
-                                                Found {{ total_results }} result{{ total_results|pluralize }}
-                                            </h2>
-                                         {% endwith %}
-                                    </div>
+                            <p class="hs-line-6 opacity-075 mb-20 mb-xs-0">
+                                {%  if results %}
+                                    Found {{ total_results }} result{{ total_results|pluralize }}
+                                {%  else %}
+                                    Nothing found ...
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!-- Widget -->
+                        <div class="widget">
+                            <div class="widget-body">
+                                <div class="tags">
+                                    {% for tag in all_tags %}
+                                        <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                                            {{ tag.name }}
+                                        </a>
+                                    {% endfor %}
                                 </div>
-
-                            <div class="col-md-4">
-                                <!-- Widget -->
-                                <div class="widget">
-                                    <div class="widget-body">
-                                        <div class="tags">
-                                            {% for tag in all_tags %}
-                                                <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
-                                                    {{ tag.name }}
-                                                </a>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- End Widget -->
                             </div>
 
                         </div>
+                        <!-- End Widget -->
                     </div>
                 </div>
             </div>
         </section>
         <!-- End Home Section -->
-
 
         <!-- Section -->
         <section class="page-section bg-dark light-content">
@@ -63,7 +57,8 @@
 
                         <div class="row">
                             <!-- My Post Items -->
-                            {% for post in results %}
+                            {%  if results %}
+                                {% for post in results %}
                                 <div class="col-sm-6 mb-60 mb-xs-40">
 
                                 <div class="post-prev-img">
@@ -97,9 +92,24 @@
                             </div>
                             {%  endfor %}
                             <!-- End My Post Item -->
-
                             {%  else %}
-                                        <p> Nothing found</p>
+                                <!-- Hero Content -->
+                                <div class="home-content">
+                                    <div class="hs-wrap">
+                                        <div class="wow fadeInUpShort" data-wow-delay=".1s">
+                                            <h1 class="hs-line-1 opacity-085 mb-40 mb-xs-20">404</h1>
+                                        </div>
+                                        <div class="wow fadeInUpShort" data-wow-delay=".2s">
+                                            <p class="hs-line-6 opacity-07">
+                                                Try again!
+                                            </p>
+                                        </div>
+                                        <div class="local-scroll wow fadeInUpShort" data-wow-delay=".3s">
+                                            <a href="{% url 'blog:post_list' %}" class="btn btn-mod btn-w btn-round btn-small"><i class="fa fa-angle-left"></i> Back To Blog</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Hero Content -->
                             {%  endif %}
 
                         </div>
