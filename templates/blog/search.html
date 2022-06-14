@@ -8,53 +8,43 @@
         <!-- Home Section -->
         <section class="small-section bg-dark-alfa-50 bg-scroll light-content" data-background="{%  static 'images/full-width-images/section-bg-19.jpg' %}" id="home">
             <div class="container relative pt-70">
-
                 <div class="row">
-
                     <div class="col-md-8">
                         <div class="wow fadeInUpShort" data-wow-delay=".1s">
-                            <h1 class="hs-line-7 mb-20 mb-xs-10">Search results</h1>
+                            <h1 class="hs-line-7 mb-20 mb-xs-10">Search results of "{{ query }}"</h1>
                         </div>
                         <div class="wow fadeInUpShort" data-wow-delay=".2s">
-                            <p class="hs-line-6 opacity-075 mb-20 mb-xs-0">
-                                I share some of my ideas here ...
-                            </p>
-
 
                             {% if results %}
-                                    <div class="uk-section uk-section-medium">
-                                        <div class="uk-container uk-container-medium uk-text-center">
-                                            <h1 class="page-title"> Posts containing "{{ query }}" </h1>
-                                             {% with results.count as total_results %}
-                                                <h2 class="post-card-title">
-                                                    Found {{ total_results }} result{{ total_results|pluralize }}
-                                                </h2>
-                                             {% endwith %}
-                            {%  else %}
-                                    <p> Nothing found</p>
-                            {%  endif %}
+                                <div class="uk-section uk-section-medium">
+                                    <div class="uk-container uk-container-medium uk-text-center">
+                                        <h1 class="page-title"> Posts containing "{{ query }}" </h1>
+                                         {% with results.count as total_results %}
+                                            <h2 class="post-card-title">
+                                                Found {{ total_results }} result{{ total_results|pluralize }}
+                                            </h2>
+                                         {% endwith %}
+                                    </div>
+                                </div>
 
-
+                            <div class="col-md-4">
+                                <!-- Widget -->
+                                <div class="widget">
+                                    <div class="widget-body">
+                                        <div class="tags">
+                                            {% for tag in all_tags %}
+                                                <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
+                                                    {{ tag.name }}
+                                                </a>
+                                            {% endfor %}
                                         </div>
                                     </div>
 
-                    <div class="col-md-4">
-                        <!-- Widget -->
-                        <div class="widget">
-                            <div class="widget-body">
-                                <div class="tags">
-                                    {% for tag in all_tags %}
-                                        <a href="{% url 'blog:post_list_by_tag' tag.slug %}">
-                                            {{ tag.name }}
-                                        </a>
-                                    {% endfor %}
                                 </div>
+                                <!-- End Widget -->
                             </div>
 
                         </div>
-                        <!-- End Widget -->
-                    </div>
-                </div>
                     </div>
                 </div>
             </div>
@@ -73,7 +63,7 @@
 
                         <div class="row">
                             <!-- My Post Items -->
-                            {% for post in posts %}
+                            {% for post in results %}
                                 <div class="col-sm-6 mb-60 mb-xs-40">
 
                                 <div class="post-prev-img">
@@ -107,6 +97,10 @@
                             </div>
                             {%  endfor %}
                             <!-- End My Post Item -->
+
+                            {%  else %}
+                                        <p> Nothing found</p>
+                            {%  endif %}
 
                         </div>
 
