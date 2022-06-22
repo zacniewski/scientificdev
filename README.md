@@ -143,7 +143,7 @@ pg_dump -U dbartur scientificdevdb > sdexport.sql
 
 * Before you must create database with the same name and the same user like was on your remote machine,
 
-* Sometimes you may need to edit `sudo nano /etc/postgresql/14/main/pg_hba.conf` file, 
+* Sometimes you may need to edit `sudo nano /etc/postgresql/12/main/pg_hba.conf` file (check your version of PostgreSQL first, on Ubuntu 22.04 it's 14), 
 and change  `# Database administrative login by Unix domain socket` or/and `# "local" is for Unix domain socket connections only` from `peer` to `md5`:    
 
 ```bash
