@@ -1,7 +1,7 @@
 amqp==5.1.1
 asgiref==3.6.0
 beautifulsoup4==4.11.1
-billiard==4.1.0
+billiard==3.6.4.0
 celery==5.2.7
 certifi==2022.12.7
 cffi==1.15.1
@@ -17,7 +17,7 @@ django-tinymce==3.5.0
 idna==3.4
 kombu==5.2.4
 numpy==1.24.1
-opencv-contrib-python==4.5.5.64
+opencv-contrib-python==4.7.0.68
 opencv-python==4.7.0.68
 Pillow==9.4.0
 prompt-toolkit==3.0.36
