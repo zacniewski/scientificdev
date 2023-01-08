@@ -45,7 +45,7 @@ def contact(request):
                 message = form.cleaned_data.get('message')
                 message += 2 * '\r\n' + 'Name: ' + name
                 email_message = EmailMessage(subject, message, 'artur@scientificdev.net',
-                                             ['a.zacniewski@gmail.com', 'a.zacniewski@interia.eu'],
+                                             ['artur.zacniewski@proton.me'],
                                              headers={'Reply-To': email})
                 email_message.send(fail_silently=False)
                 form = ContactForm()

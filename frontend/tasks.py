@@ -18,7 +18,7 @@ def task_send_email_about_ebook():
     email = EmailMessage(subject,
                          message,
                          'artur@scientificdev.net',
-                         ['a.zacniewski@interia.eu'])
+                         ['artur.zacniewski@proton.me'])
     # email.content_subtype = "html"
     email.send(fail_silently=False)
 
@@ -33,7 +33,7 @@ def task_send_chf_rate():
     email = EmailMessage(subject,
                          message,
                          'artur@scientificdev.net',
-                         ['a.zacniewski@interia.eu'])
+                         ['artur.zacniewski@proton.me'])
     email.content_subtype = "html"
     email.send(fail_silently=False)
 
