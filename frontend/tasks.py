@@ -25,10 +25,11 @@ def task_send_email_about_ebook():
 
 @app.task
 def task_send_chf_rate():
-    page = requests.get('https://internetowykantor.pl/kurs-franka/')
+    page = requests.get('https://www.nbp.pl/home.aspx?f=/kursy/kursya.html')
     soup = BeautifulSoup(page.content, 'html.parser')
-    kurs_chf = soup.find('span', attrs={'data-rates-direction': 'sell'}).text.strip()
-    subject = "Kurs CHF"
+    kursy_walut = soup.find_all('td', attrs={'class': 'right'})
+    kurs_chf = kursy_walut[19].get_text()
+    subject = "Średni kurs CHF wg NBP"
     message = f"Kurs CHF na dzisiaj to {kurs_chf} zł. \n"
     email = EmailMessage(subject,
                          message,
