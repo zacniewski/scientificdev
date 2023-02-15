@@ -58,7 +58,7 @@ def task_send_weather_data():
                                 '&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m').json()
 
     subject = f"Pogoda na {weather_data['current_weather']['time'].split('T')[0]}"
-    current_weather_code = weather_data['current_weather']['weather_code']
+    current_weather_code = weather_data['current_weather']['weathercode']
     current_weather_description = ""
     for key in weather_codes.keys():
         if current_weather_code in key:
@@ -96,6 +96,6 @@ app.conf.beat_schedule = {
     },
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
-        "schedule": crontab(hour=11, minute=50)
+        "schedule": crontab(hour=12, minute=0)
     }
 }
