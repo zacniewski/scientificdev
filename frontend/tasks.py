@@ -7,43 +7,43 @@ from django.core.mail import EmailMessage
 from sd.celery import app
 
 weather_codes = {
-    (0,): "Czyste niebo",
-    (1,): "Głównie bezchmurnie",
-    (2,): "Częściowo pochmurno",
-    (3,): "Pochmurno",
+    (0,): "czyste niebo",
+    (1,): "głównie bezchmurnie",
+    (2,): "częściowo pochmurno",
+    (3,): "pochmurno",
 
-    (45,): "Mgła",
-    (48,): "Opadająca mgła szronowa",
+    (45,): "mgła",
+    (48,): "opadająca mgła szronowa",
 
-    (51,): "Mżawka lekka",
-    (53,): "Mżawka umiarkowana",
-    (55,): "Mżawka gęsta",
+    (51,): "mżawka lekka",
+    (53,): "mżawka umiarkowana",
+    (55,): "mżawka gęsta",
 
-    (56,): "Zamrażająca mżawka: lekka",
-    (57,): "Zamrażająca mżawka: gęsta intensywność",
+    (56,): "zamrażająca mżawka: lekka",
+    (57,): "zamrażająca mżawka: gęsta intensywność",
 
-    (61,): "Deszcz słaby",
-    (63,): "Deszcz umiarkowany",
-    (65,): "Deszcz intensywny",
+    (61,): "deszcz słaby",
+    (63,): "deszcz umiarkowany",
+    (65,): "deszcz intensywny",
 
-    (66,): "Marznący deszcz: intensywność lekka",
-    (67,): "Marznący deszcz: intensywność ciężka",
+    (66,): "marznący deszcz: intensywność lekka",
+    (67,): "marznący deszcz: intensywność ciężka",
 
-    (71,): "Opady śniegu: Intensywność niewielka",
-    (73,): "Opady śniegu: Intensywność umiarkowana",
-    (75,): "Opady śniegu: Intensywność duża",
+    (71,): "opady śniegu: intensywność niewielka",
+    (73,): "opady śniegu: intensywność umiarkowana",
+    (75,): "opady śniegu: intensywność duża",
 
-    (77,): "Ziarna śniegu",
-    (80,): "Przelotne opady deszczu: słabe",
-    (81,): "Przelotne opady deszczu: umiarkowane",
-    (82,): "Przelotne opady deszczu: gwałtowne",
+    (77,): "ziarna śniegu",
+    (80,): "przelotne opady deszczu: słabe",
+    (81,): "przelotne opady deszczu: umiarkowane",
+    (82,): "przelotne opady deszczu: gwałtowne",
 
-    (85,): "Opady śniegu lekkie",
-    (86,): "Opady śniegu intensywne",
+    (85,): "opady śniegu lekkie",
+    (86,): "opady śniegu intensywne",
 
-    (95,): "Burza: Słaba lub umiarkowana",
-    (96,): "Burza z lekkim gradem",
-    (99,): "Burza z silnym gradem"
+    (95,): "burza: Słaba lub umiarkowana",
+    (96,): "burza z lekkim gradem",
+    (99,): "burza z silnym gradem"
 }
 
 
@@ -100,7 +100,7 @@ def task_send_weather_data():
         f"- o 6.00: {weather_data['hourly']['relativehumidity_2m'][6]}% \n"
         f"- o 12.00: {weather_data['hourly']['relativehumidity_2m'][12]}% \n"
         f"- o 18.00: {weather_data['hourly']['relativehumidity_2m'][18]}% \n\n"
-        f"IV. Opis pogody o 6.00: {current_weather_description}."
+        f"IV. Pogoda o 6.00: {current_weather_description}."
     )
     email = EmailMessage(subject,
                          message,
@@ -120,6 +120,6 @@ app.conf.beat_schedule = {
     },
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
-        "schedule": crontab(hour=12, minute=24)
+        "schedule": crontab(hour=6, minute=0)
     }
 }
