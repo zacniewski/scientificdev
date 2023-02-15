@@ -88,14 +88,14 @@ def task_send_weather_data():
 app.conf.beat_schedule = {
     "task_send_email_about_ebook": {
         "task": "frontend.tasks.task_send_email_about_ebook",
-        "schedule": crontab(hour=7, minute=5)
+        "schedule": crontab(hour=6, minute=5)
     },
     "task_send_chf_rate": {
         "task": "frontend.tasks.task_send_chf_rate",
-        "schedule": crontab(hour=7, minute=10)
+        "schedule": crontab(hour=6, minute=10)
     },
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
-        "schedule": crontab(hour=12, minute=0)
+        "schedule": crontab(hour=6, minute=0)
     }
 }
