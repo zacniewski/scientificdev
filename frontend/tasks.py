@@ -25,12 +25,11 @@ def task_send_email_about_ebook():
 
 @app.task
 def task_send_chf_rate():
-    page = requests.get('https://www.nbp.pl/home.aspx?f=/kursy/kursya.html')
+    page = requests.get('https://www.bankier.pl/waluty/kursy-walut/nbp/CHF')
     soup = BeautifulSoup(page.content, 'html.parser')
-    kursy_walut = soup.find_all('td', attrs={'class': 'right'})
-    kurs_chf = kursy_walut[19].get_text()
+    kurs_chf = soup.find('div', attrs={'class': 'profilLast'}).get_text()
     subject = "Średni kurs CHF wg NBP"
-    message = f"Kurs CHF na dzisiaj to {kurs_chf} zł. \n"
+    message = f"Kurs CHF na dzisiaj to {kurs_chf}. \n"
     email = EmailMessage(subject,
                          message,
                          'artur@scientificdev.net',
@@ -46,6 +45,6 @@ app.conf.beat_schedule = {
         },
     "task_send_chf_rate": {
         "task": "frontend.tasks.task_send_chf_rate",
-        "schedule": crontab(hour=7, minute=10)
+        "schedule": crontab(hour=8, minute=46)
         }
     }
