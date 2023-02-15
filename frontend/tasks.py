@@ -7,19 +7,43 @@ from django.core.mail import EmailMessage
 from sd.celery import app
 
 weather_codes = {
-    (0,): "Clear sky",
-    (1, 2, 3): "Mainly clear, partly cloudy, and overcast",
-    (45, 48): "Fog and depositing rime fog",
-    (51, 53, 55): "Drizzle: Light, moderate, and dense intensity",
-    (56, 57): "Freezing Drizzle: Light and dense intensity",
-    (61, 63, 65): "Rain: Slight, moderate and heavy intensity",
-    (66, 67): "Freezing Rain: Light and heavy intensity",
-    (71, 73, 75): "Snow fall: Slight, moderate, and heavy intensity",
-    (77,): "Snow grains",
-    (80, 81, 82): "Rain showers: Slight, moderate, and violent",
-    (85, 86): "Snow showers slight and heavy",
-    (95,): "Thunderstorm: Slight or moderate",
-    (96, 99): "Thunderstorm with slight and heavy hail"
+    (0,): "Czyste niebo",
+    (1,): "Głównie bezchmurnie",
+    (2,): "Częściowo pochmurno",
+    (3,): "Pochmurno",
+
+    (45,): "Mgła",
+    (48,): "Opadająca mgła szronowa",
+
+    (51,): "Mżawka lekka",
+    (53,): "Mżawka umiarkowana",
+    (55,): "Mżawka gęsta",
+
+    (56,): "Zamrażająca mżawka: lekka",
+    (57,): "Zamrażająca mżawka: gęsta intensywność",
+
+    (61,): "Deszcz słaby",
+    (63,): "Deszcz umiarkowany",
+    (65,): "Deszcz intensywny",
+
+    (66,): "Marznący deszcz: intensywność lekka",
+    (67,): "Marznący deszcz: intensywność ciężka",
+
+    (71,): "Opady śniegu: Intensywność niewielka",
+    (73,): "Opady śniegu: Intensywność umiarkowana",
+    (75,): "Opady śniegu: Intensywność duża",
+
+    (77,): "Ziarna śniegu",
+    (80,): "Przelotne opady deszczu: słabe",
+    (81,): "Przelotne opady deszczu: umiarkowane",
+    (82,): "Przelotne opady deszczu: gwałtowne",
+
+    (85,): "Opady śniegu lekkie",
+    (86,): "Opady śniegu intensywne",
+
+    (95,): "Burza: Słaba lub umiarkowana",
+    (96,): "Burza z lekkim gradem",
+    (99,): "Burza z silnym gradem"
 }
 
 
@@ -64,24 +88,24 @@ def task_send_weather_data():
         if current_weather_code in key:
             current_weather_description = weather_codes[key]
     message = (
-        f"Temperatura:  \n"
+        f"I. Temperatura:  \n"
         f"- o 6.00: {weather_data['hourly']['temperature_2m'][6]} °C \n"
         f"- o 12.00: {weather_data['hourly']['temperature_2m'][12]} °C \n"
         f"- o 18.00: {weather_data['hourly']['temperature_2m'][18]} °C \n\n"
-        f"Prędkość wiatru:  \n"
+        f"II. Prędkość wiatru:  \n"
         f"- o 6.00: {weather_data['hourly']['windspeed_10m'][6]} km/h \n"
         f"- o 12.00: {weather_data['hourly']['windspeed_10m'][12]} km/h \n"
         f"- o 18.00: {weather_data['hourly']['windspeed_10m'][18]} km/h \n\n"
-        f"Wilgotność:  \n"
+        f"III. Wilgotność:  \n"
         f"- o 6.00: {weather_data['hourly']['relativehumidity_2m'][6]}% \n"
         f"- o 12.00: {weather_data['hourly']['relativehumidity_2m'][12]}% \n"
         f"- o 18.00: {weather_data['hourly']['relativehumidity_2m'][18]}% \n\n"
-        f"Opis pogody o 6.00: {current_weather_description}."
+        f"IV. Opis pogody o 6.00: {current_weather_description}."
     )
     email = EmailMessage(subject,
                          message,
                          'artur@scientificdev.net',
-                         ['artur.zacniewski@proton.me'])
+                         ['artur.zacniewski@proton.me', 'joanna.zacniewska@gmail.com'])
     email.send(fail_silently=False)
 
 
@@ -96,6 +120,6 @@ app.conf.beat_schedule = {
     },
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
-        "schedule": crontab(hour=6, minute=0)
+        "schedule": crontab(hour=12, minute=24)
     }
 }
