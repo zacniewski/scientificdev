@@ -62,19 +62,6 @@ def task_send_email_about_ebook():
     email.send(fail_silently=False)
 
 
-@app.task
-def task_send_chf_rate():
-    page = requests.get('https://internetowykantor.pl/kurs-franka-nbp/')
-    soup = BeautifulSoup(page.content, 'html.parser')
-    kurs_chf = soup.findAll('span', attrs={'class': 'bem-single-rate-box__item-rate'})[2].get_text().strip()
-    subject = "Średni kurs CHF wg NBP"
-    message = f"Kurs CHF na dzisiaj to {kurs_chf}. \n"
-    email = EmailMessage(subject,
-                         message,
-                         'artur@scientificdev.net',
-                         ['artur.zacniewski@proton.me'])
-    email.send(fail_silently=False)
-
 
 @app.task
 def task_send_weather_data():
@@ -113,10 +100,6 @@ app.conf.beat_schedule = {
     "task_send_email_about_ebook": {
         "task": "frontend.tasks.task_send_email_about_ebook",
         "schedule": crontab(hour=6, minute=5)
-    },
-    "task_send_chf_rate": {
-        "task": "frontend.tasks.task_send_chf_rate",
-        "schedule": crontab(hour=6, minute=10)
     },
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
