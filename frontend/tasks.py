@@ -1,3 +1,4 @@
+from datetime import datetime
 import requests
 
 from bs4 import BeautifulSoup
@@ -46,6 +47,23 @@ weather_codes = {
     (99,): "burza z silnym gradem"
 }
 
+trash_set_nr_1 = ("Odpady zmieszane", "Odpady bio", "Plastik i metal", "Makulatura")
+
+# klucz - miesiąc, wartość - dzień miesiąca
+dates_for_trash_set_nr_1 = {
+    4: 26,  # test
+    5: 8,
+    6: 5,
+    7: 3,
+    8: 14,
+    9: 11,
+    10: 9,
+    11: 6,
+    12: 4
+}
+trash_set_nr_2 = ("Odpady zmieszane", "Odpady bio", "Szkło", "Popiół", "Odpady zielone")
+trash_set_nr_3 = ("Odpady wielkogabarytowe", )
+
 
 @app.task
 def task_send_email_about_ebook():
@@ -60,7 +78,6 @@ def task_send_email_about_ebook():
                          'artur@scientificdev.net',
                          ['artur.zacniewski@proton.me'])
     email.send(fail_silently=False)
-
 
 
 @app.task
@@ -96,6 +113,27 @@ def task_send_weather_data():
     email.send(fail_silently=False)
 
 
+@app.task
+def task_trash_reminder_set_1():
+    today = datetime.now()
+    month = today.month
+    day = today.day
+
+    subject = "Jutro wywóz śmieci"
+    message = "Śmieci do wystawienia na jutro to: \n"
+
+    if dates_for_trash_set_nr_1[month] == day:
+        for trash in trash_set_nr_1:
+            message += f"- {trash} \n"
+
+        email = EmailMessage(subject,
+                             message,
+                             'artur@scientificdev.net',
+                             ['artur.zacniewski@proton.me'])
+        email.send(fail_silently=False)
+
+
+# SCHEDULE
 app.conf.beat_schedule = {
     "task_send_email_about_ebook": {
         "task": "frontend.tasks.task_send_email_about_ebook",
@@ -104,5 +142,9 @@ app.conf.beat_schedule = {
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
         "schedule": crontab(hour=6, minute=0)
-    }
+    },
+    "task_trash_reminder_set_1": {
+        "task": "frontend.tasks.task_trash_reminder_set_1",
+        "schedule": crontab(hour=7, minute=0)
+    },
 }
