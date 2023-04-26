@@ -7,6 +7,7 @@ from django.core.mail import EmailMessage
 
 from sd.celery import app
 
+# Kody pogodowe dla API z open-meteo
 weather_codes = {
     (0,): "czyste niebo",
     (1,): "głównie bezchmurnie",
@@ -47,22 +48,49 @@ weather_codes = {
     (99,): "burza z silnym gradem"
 }
 
+# Obsługa informacji przypominających o wystawieniu śmieci
+today = datetime.now()
+month = today.month
+day = today.day
+
 trash_set_nr_1 = ("Odpady zmieszane", "Odpady bio", "Plastik i metal", "Makulatura")
 
 # klucz - miesiąc, wartość - dzień miesiąca
 dates_for_trash_set_nr_1 = {
-    4: 26,  # test
-    5: 8,
-    6: 5,
-    7: 3,
-    8: 14,
-    9: 11,
-    10: 9,
-    11: 6,
-    12: 4
+    1: (2, 30),
+    2: (13,),
+    3: (13,),
+    4: (26,),  # test
+    5: (8,),
+    6: (5,),
+    7: (3, 31),
+    8: (14,),
+    9: (11,),
+    10: (9,),
+    11: (6,),
+    12: (4,)
 }
+
 trash_set_nr_2 = ("Odpady zmieszane", "Odpady bio", "Szkło", "Popiół", "Odpady zielone")
-trash_set_nr_3 = ("Odpady wielkogabarytowe", )
+dates_for_trash_set_nr_2 = {
+    1: (16,),
+    2: (27,),
+    3: (27,),
+    4: (27,),  # test
+    5: (22,),
+    6: (19,),
+    7: (17,),
+    8: (28,),
+    9: (25,),
+    10: (23,),
+    11: (20,),
+    12: (18,)
+}
+trash_set_nr_3 = ("Odpady wielkogabarytowe",)
+dates_for_trash_set_nr_3 = {
+    3: (4,),
+    9: (2,)
+}
 
 
 @app.task
@@ -114,16 +142,32 @@ def task_send_weather_data():
 
 
 @app.task
-def task_trash_reminder_set_1():
-    today = datetime.now()
-    month = today.month
-    day = today.day
-
+def task_trash_reminder():
     subject = "Jutro wywóz śmieci"
     message = "Śmieci do wystawienia na jutro to: \n"
 
-    if dates_for_trash_set_nr_1[month] == day:
+    if day in dates_for_trash_set_nr_1[month]:
         for trash in trash_set_nr_1:
+            message += f"- {trash} \n"
+
+        email = EmailMessage(subject,
+                             message,
+                             'artur@scientificdev.net',
+                             ['artur.zacniewski@proton.me'])
+        email.send(fail_silently=False)
+
+    if day in dates_for_trash_set_nr_2[month]:
+        for trash in trash_set_nr_2:
+            message += f"- {trash} \n"
+
+        email = EmailMessage(subject,
+                             message,
+                             'artur@scientificdev.net',
+                             ['artur.zacniewski@proton.me'])
+        email.send(fail_silently=False)
+
+    if day in dates_for_trash_set_nr_3[month]:
+        for trash in trash_set_nr_3:
             message += f"- {trash} \n"
 
         email = EmailMessage(subject,
@@ -143,8 +187,8 @@ app.conf.beat_schedule = {
         "task": "frontend.tasks.task_send_weather_data",
         "schedule": crontab(hour=6, minute=0)
     },
-    "task_trash_reminder_set_1": {
-        "task": "frontend.tasks.task_trash_reminder_set_1",
-        "schedule": crontab(hour=7, minute=0)
+    "task_trash_reminder": {
+        "task": "frontend.tasks.task_trash_reminder",
+        "schedule": crontab(hour=6, minute=30)
     },
 }
