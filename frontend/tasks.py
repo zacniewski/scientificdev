@@ -50,8 +50,8 @@ weather_codes = {
 
 # Obsługa informacji przypominających o wystawieniu śmieci
 today = datetime.now()
-month = today.month
-day = today.day
+number_of_month = today.month
+number_of_day = today.day
 
 trash_set_nr_1 = ("Odpady zmieszane", "Odpady bio", "Plastik i metal", "Makulatura")
 
@@ -60,8 +60,8 @@ dates_for_trash_set_nr_1 = {
     1: (2, 30),
     2: (13,),
     3: (13,),
-    4: (26,),  # test
-    5: (8,),
+    4: (11,),
+    5: (1, 8,),  # test
     6: (5,),
     7: (3, 31),
     8: (14,),
@@ -76,7 +76,7 @@ dates_for_trash_set_nr_2 = {
     1: (16,),
     2: (27,),
     3: (27,),
-    4: (27,),  # test
+    4: (24,),
     5: (22,),
     6: (19,),
     7: (17,),
@@ -146,7 +146,7 @@ def task_trash_reminder():
     subject = "Jutro wywóz śmieci"
     message = "Śmieci do wystawienia na jutro to: \n"
 
-    if day in dates_for_trash_set_nr_1[month]:
+    if number_of_day-1 in dates_for_trash_set_nr_1[number_of_month]:
         for trash in trash_set_nr_1:
             message += f"- {trash} \n"
 
@@ -156,7 +156,7 @@ def task_trash_reminder():
                              ['artur.zacniewski@proton.me'])
         email.send(fail_silently=False)
 
-    if day in dates_for_trash_set_nr_2[month]:
+    if day-1 in dates_for_trash_set_nr_2[month]:
         for trash in trash_set_nr_2:
             message += f"- {trash} \n"
 
