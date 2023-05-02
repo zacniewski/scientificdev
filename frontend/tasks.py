@@ -61,7 +61,7 @@ dates_for_trash_set_nr_1 = {
     2: (13,),
     3: (13,),
     4: (11,),
-    5: (1, 8,),  # test
+    5: (2, 8,),  # test
     6: (5,),
     7: (3, 31),
     8: (14,),
@@ -156,7 +156,7 @@ def task_trash_reminder():
                              ['artur.zacniewski@proton.me'])
         email.send(fail_silently=False)
 
-    if day-1 in dates_for_trash_set_nr_2[month]:
+    if number_of_day-1 in dates_for_trash_set_nr_2[number_of_month]:
         for trash in trash_set_nr_2:
             message += f"- {trash} \n"
 
@@ -166,7 +166,7 @@ def task_trash_reminder():
                              ['artur.zacniewski@proton.me'])
         email.send(fail_silently=False)
 
-    if day in dates_for_trash_set_nr_3[month]:
+    if number_of_day in dates_for_trash_set_nr_3[number_of_month]:
         for trash in trash_set_nr_3:
             message += f"- {trash} \n"
 
