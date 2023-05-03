@@ -61,7 +61,7 @@ dates_for_trash_set_nr_1 = {
     2: (13,),
     3: (13,),
     4: (11,),
-    5: (3, 8,),  # test
+    5: (2, 8,),  # test
     6: (5,),
     7: (3, 31),
     8: (14,),
@@ -189,6 +189,6 @@ app.conf.beat_schedule = {
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
-        "schedule": crontab(hour=13, minute=26)
+        "schedule": crontab(hour=13, minute=33)
     },
 }
