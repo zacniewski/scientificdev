@@ -3,8 +3,8 @@
 [Master Stylesheet]
 
 Project: Rhythm
-Version: 3.6.1
-Last change: 8 March 2022
+Version: 3.7.2
+Last change: 29 September 2022
 Primary use: Multipurpose Template  
 -------------------------------------------------------------------*/
 
@@ -448,7 +448,7 @@ h4, .h4{
     letter-spacing: -0.04em;
 }
 h5, .h5{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 }
 h6, .h6{
     font-size: 1rem;
@@ -563,6 +563,7 @@ hr.white{
 }
 .light-content table{
     color: #fff;
+    border-color: #333;
 }
 .light-content .table-bordered th,
 .light-content .table-bordered td{
@@ -570,6 +571,7 @@ hr.white{
 }
 .light-content .table-striped tbody tr:nth-of-type(odd){
     background-color: rgba(255,255,255, .05);
+    color: #fff;
 }
 
 .highlight pre{
@@ -1563,8 +1565,8 @@ html:not(.mobile) .wow-p{
         opacity: 1 !important;
         -webkit-transform: none !important;
         transform: none !important;
-        -webkit-animation-play-state: paused !important;
-        animation-play-state: paused !important;
+        -webkit-animation: none !important;
+        animation: none !important;
     }
 }
 .fadeInDownShort, .fadeInUpShort, .scalexIn, .fadeScaleIn, 
@@ -1576,7 +1578,7 @@ html:not(.mobile) .wow-p{
 .fadeInTopRight, .fadeInBottomLeft, .fadeInBottomRight, .flipInX, .flipInY,
 .lightSpeedInRight, .lightSpeedInLeft, .rotateIn, .rotateInDownLeft,
 .rotateInDownRight, .rotateInUpLeft, .rotateInUpRight, .jackInTheBox, 
-.rollIn,  .zoomIn, .zoomInDown, .zoomInLeft, .zoomInRight, .zoomInUp{
+.rollIn, .zoomIn, .zoomInDown, .zoomInLeft, .zoomInRight, .zoomInUp{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;    
     -webkit-transform: translateZ(0);
@@ -1721,6 +1723,7 @@ html:not(.mobile) .wow-p{
     transition: all 0.2s cubic-bezier(0.000, 0.000, 0.580, 1.000);
 }
 .nav-logo-wrap .logo img{
+    width: auto;
     max-height: 100%;
 }
 .nav-logo-wrap .logo:before,
@@ -5307,10 +5310,10 @@ table.shopping-cart-table tr td{
 }
 
 .item-carousel .owl-prev{
-    left: -87px;
+    left: -30px;
 }
 .item-carousel .owl-next{
-    right: -87px;
+    right: -30px;
 }
 
 .small-item-carousel.owl-carousel .owl-prev,
@@ -5386,8 +5389,8 @@ table.shopping-cart-table tr td{
     .owl-animate-1,
     .owl-animate-2,
     .owl-animate-3{
-        -webkit-transition-duration:1ms!important;
-        transition-duration:1ms!important;
+        -webkit-transition: none !important;
+        transition: none !important;
     }
 }
 
@@ -5491,7 +5494,7 @@ table.shopping-cart-table tr td{
     color: #fff;
 }
 .light-content .tpl-tabs li .nav-link.active{
-    border-color: #bbb #bbb #111;
+    border-color: #bbb #bbb #1b1b1b;
     background-color: transparent;
     color: #fff;
 }
