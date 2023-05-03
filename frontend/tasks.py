@@ -146,7 +146,7 @@ def task_trash_reminder():
     subject = "Jutro wywóz śmieci"
     message = "Śmieci do wystawienia na jutro to: \n"
 
-    if number_of_day-1 in dates_for_trash_set_nr_1[number_of_month]:
+    if number_of_day-1 in dates_for_trash_set_nr_1.get(number_of_month, (1000,)):
         for trash in trash_set_nr_1:
             message += f"- {trash} \n"
 
@@ -156,7 +156,7 @@ def task_trash_reminder():
                              ['artur.zacniewski@proton.me'])
         email.send(fail_silently=False)
 
-    if number_of_day-1 in dates_for_trash_set_nr_2[number_of_month]:
+    if number_of_day-1 in dates_for_trash_set_nr_2.get(number_of_month, (1000,)):
         for trash in trash_set_nr_2:
             message += f"- {trash} \n"
 
@@ -166,7 +166,7 @@ def task_trash_reminder():
                              ['artur.zacniewski@proton.me'])
         email.send(fail_silently=False)
 
-    if number_of_day in dates_for_trash_set_nr_3[number_of_month]:
+    if number_of_day in dates_for_trash_set_nr_3.get(number_of_month, (1000,)):
         for trash in trash_set_nr_3:
             message += f"- {trash} \n"
 
@@ -189,6 +189,6 @@ app.conf.beat_schedule = {
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
-        "schedule": crontab(hour=10, minute=58)
+        "schedule": crontab(hour=13, minute=26)
     },
 }
