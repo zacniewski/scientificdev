@@ -153,7 +153,7 @@ def task_trash_reminder():
         email = EmailMessage(subject,
                              message,
                              'artur@scientificdev.net',
-                             ['artur.zacniewski@proton.me'])
+                             ['artur.zacniewski@proton.me', 'joanna.zacniewska@gmail.com'])
         email.send(fail_silently=False)
 
     if number_of_day+1 in dates_for_trash_set_nr_2.get(number_of_month, (1000,)):
@@ -163,7 +163,7 @@ def task_trash_reminder():
         email = EmailMessage(subject,
                              message,
                              'artur@scientificdev.net',
-                             ['artur.zacniewski@proton.me'])
+                             ['artur.zacniewski@proton.me', 'joanna.zacniewska@gmail.com'])
         email.send(fail_silently=False)
 
     if number_of_day+1 in dates_for_trash_set_nr_3.get(number_of_month, (1000,)):
@@ -173,7 +173,7 @@ def task_trash_reminder():
         email = EmailMessage(subject,
                              message,
                              'artur@scientificdev.net',
-                             ['artur.zacniewski@proton.me'])
+                             ['artur.zacniewski@proton.me', 'joanna.zacniewska@gmail.com'])
         email.send(fail_silently=False)
 
 
