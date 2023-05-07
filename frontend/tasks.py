@@ -189,6 +189,6 @@ app.conf.beat_schedule = {
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
-        "schedule": crontab(hour=17, minute=0)
+        "schedule": crontab(hour=19, minute=50)
     },
 }
