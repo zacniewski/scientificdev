@@ -49,10 +49,6 @@ weather_codes = {
 }
 
 # Obsługa informacji przypominających o wystawieniu śmieci
-today = datetime.now()
-number_of_month = today.month
-number_of_day = today.day
-
 trash_set_nr_1 = ("Odpady zmieszane", "Odpady bio", "Plastik i metal", "Makulatura")
 
 # klucz - miesiąc, wartość - dzień miesiąca
@@ -143,6 +139,10 @@ def task_send_weather_data():
 
 @app.task
 def task_trash_reminder():
+    today = datetime.now()
+    number_of_month = today.month
+    number_of_day = today.day
+
     subject = "Jutro wywóz śmieci"
     message = "Śmieci do wystawienia na jutro to: \n"
 
