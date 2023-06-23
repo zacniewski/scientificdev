@@ -146,7 +146,7 @@ def task_trash_reminder():
     subject = "Jutro wywóz śmieci"
     message = "Śmieci do wystawienia na jutro to: \n"
 
-    if number_of_day+1 in dates_for_trash_set_nr_1.get(number_of_month, (1000,)):
+    if number_of_day + 1 in dates_for_trash_set_nr_1.get(number_of_month, (1000,)):
         for trash in trash_set_nr_1:
             message += f"- {trash} \n"
 
@@ -156,7 +156,7 @@ def task_trash_reminder():
                              ['artur.zacniewski@proton.me', 'joanna.zacniewska@gmail.com'])
         email.send(fail_silently=False)
 
-    if number_of_day+1 in dates_for_trash_set_nr_2.get(number_of_month, (1000,)):
+    if number_of_day + 1 in dates_for_trash_set_nr_2.get(number_of_month, (1000,)):
         for trash in trash_set_nr_2:
             message += f"- {trash} \n"
 
@@ -166,7 +166,7 @@ def task_trash_reminder():
                              ['artur.zacniewski@proton.me', 'joanna.zacniewska@gmail.com'])
         email.send(fail_silently=False)
 
-    if number_of_day+1 in dates_for_trash_set_nr_3.get(number_of_month, (1000,)):
+    if number_of_day + 1 in dates_for_trash_set_nr_3.get(number_of_month, (1000,)):
         for trash in trash_set_nr_3:
             message += f"- {trash} \n"
 
@@ -175,6 +175,18 @@ def task_trash_reminder():
                              'artur@scientificdev.net',
                              ['artur.zacniewski@proton.me', 'joanna.zacniewska@gmail.com'])
         email.send(fail_silently=False)
+
+
+@app.task
+def task_recuperation_filters():
+    subject = "Filtry rekuperatora"
+    message = f"Czas na wymianę filtrów rekuperatora. \n"
+    message += f"Filtry dostępne są <a href='https://cennik24.pl/'>tutaj</a>."
+    email = EmailMessage(subject,
+                         message,
+                         'artur@scientificdev.net',
+                         ['artur.zacniewski@proton.me'])
+    email.send(fail_silently=False)
 
 
 # SCHEDULE
@@ -191,4 +203,8 @@ app.conf.beat_schedule = {
         "task": "frontend.tasks.task_trash_reminder",
         "schedule": crontab(hour=19, minute=0)
     },
+    "task_recuperation_filters": {
+        "task": "frontend.tasks.task_trash_reminder",
+        "schedule": crontab(day_of_month=24, month_of_year='*/3')
+    }
 }
