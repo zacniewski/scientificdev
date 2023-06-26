@@ -73,8 +73,19 @@ dates_for_trash_set_nr_2 = {
     11: (20,),
     12: (18,),
 }
+
 trash_set_nr_3 = ("Odpady wielkogabarytowe",)
 dates_for_trash_set_nr_3 = {3: (4,), 9: (2,)}
+
+trash_set_nr_4 = ("Odpady bio",)
+dates_for_trash_set_nr_4 = {6: (12, 26), 7: (10, 24), 8: (7, 21)}
+
+trash_dates_relations = {
+    trash_set_nr_1: dates_for_trash_set_nr_1,
+    trash_set_nr_2: dates_for_trash_set_nr_2,
+    trash_set_nr_3: dates_for_trash_set_nr_3,
+    trash_set_nr_4: dates_for_trash_set_nr_4,
+}
 
 
 @app.task
@@ -141,7 +152,7 @@ def task_trash_reminder():
     subject = "Jutro wywóz śmieci"
     message = "Śmieci do wystawienia na jutro to: \n"
 
-    if number_of_day + 1 in dates_for_trash_set_nr_1.get(number_of_month, (1000,)):
+    """if number_of_day + 1 in dates_for_trash_set_nr_1.get(number_of_month, (1000,)):
         for trash in trash_set_nr_1:
             message += f"- {trash} \n"
 
@@ -175,7 +186,21 @@ def task_trash_reminder():
             "artur@scientificdev.net",
             ["artur.zacniewski@proton.me", "joanna.zacniewska@gmail.com"],
         )
-        email.send(fail_silently=False)
+        email.send(fail_silently=False)"""
+
+    for key in trash_dates_relations:
+        if number_of_day + 1 in trash_dates_relations[key].get(
+            number_of_month, (1000,)
+        ):
+            for trash in key:
+                message += f"- {trash} \n"
+            email = EmailMessage(
+                subject,
+                message,
+                "artur@scientificdev.net",
+                ["artur.zacniewski@proton.me", "joanna.zacniewska@gmail.com"],
+            )
+            email.send(fail_silently=False)
 
 
 @app.task
@@ -201,12 +226,12 @@ app.conf.beat_schedule = {
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
-        "schedule": crontab(hour=19, minute=0),
+        "schedule": crontab(hour=14, minute=35),
     },
     "task_recuperation_filters": {
         "task": "frontend.tasks.task_recuperation_filters",
         "schedule": crontab(
-            month_of_year="3, 6, 9, 12", day_of_month=26, hour=14, minute=12
+            month_of_year="3, 6, 9, 12", day_of_month=20, hour=8, minute=10
         ),
     },
 }
