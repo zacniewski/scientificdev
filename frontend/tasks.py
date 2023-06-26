@@ -78,7 +78,7 @@ trash_set_nr_3 = ("Odpady wielkogabarytowe",)
 dates_for_trash_set_nr_3 = {3: (4,), 9: (2,)}
 
 trash_set_nr_4 = ("Odpady bio",)
-dates_for_trash_set_nr_4 = {6: (12, 26), 7: (10, 24), 8: (7, 21)}
+dates_for_trash_set_nr_4 = {6: (12, 27), 7: (10, 24), 8: (7, 21)}
 
 trash_dates_relations = {
     trash_set_nr_1: dates_for_trash_set_nr_1,
@@ -226,7 +226,7 @@ app.conf.beat_schedule = {
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
-        "schedule": crontab(hour=14, minute=55),
+        "schedule": crontab(hour=19, minute=17),
     },
     "task_recuperation_filters": {
         "task": "frontend.tasks.task_recuperation_filters",
