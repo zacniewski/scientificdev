@@ -205,6 +205,6 @@ app.conf.beat_schedule = {
     },
     "task_recuperation_filters": {
         "task": "frontend.tasks.task_trash_reminder",
-        "schedule": crontab(day_of_month=26, month_of_year="*/3", hour=12, minute=0),
+        "schedule": crontab(day_of_month=26, month_of_year="*/3", hour=13, minute=0),
     },
 }
