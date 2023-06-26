@@ -226,7 +226,7 @@ app.conf.beat_schedule = {
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
-        "schedule": crontab(hour=14, minute=35),
+        "schedule": crontab(hour=14, minute=55),
     },
     "task_recuperation_filters": {
         "task": "frontend.tasks.task_recuperation_filters",
