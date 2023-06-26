@@ -205,6 +205,8 @@ app.conf.beat_schedule = {
     },
     "task_recuperation_filters": {
         "task": "frontend.tasks.task_recuperation_filters",
-        "schedule": crontab(month_of_year="3, 6, 9, 12", day_of_month=26,  hour=14, minute=12),
+        "schedule": crontab(
+            month_of_year="3, 6, 9, 12", day_of_month=26, hour=14, minute=12
+        ),
     },
 }
