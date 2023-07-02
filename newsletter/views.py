@@ -1,6 +1,5 @@
 import logging
 import traceback
-# from time import time
 
 import requests
 from django.conf import settings as project_settings
