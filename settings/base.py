@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'newsletter.apps.NewsletterConfig',
     'tinymce',
     'taggit',
+    'ambro.apps.AmbroConfig',
 ]
 
 MIDDLEWARE = [
