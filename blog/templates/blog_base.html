@@ -5,8 +5,8 @@ You can find the code of your language here - https://www.w3schools.com/tags/ref
 <html lang="en">
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32924821-6"></script>
-        <script>
+        <script nonce="{{ CSP_NONCE }}" async src="https://www.googletagmanager.com/gtag/js?id=UA-32924821-6" type="application/javascript"></script>
+        <script nonce="{{ CSP_NONCE }}" type="application/javascript">
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());

@@ -211,20 +211,34 @@ CSP_DEFAULT_SRC = [
 
 CSP_IMG_SRC = [
     "'self'",
+    "data:",
     "https://www.googletagmanager.com",
     "https://www.google-analytics.com"
 ]
 
+CSP_CONNECT_SRC = [
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com",
+    "https://region1.google-analytics.com"
+]
+
+CSP_OBJECT_SRC = [
+    "data:"
+]
+
 CSP_STYLE_SRC = [
     "https://stackpath.bootstrapcdn.com",
-    "https://cdnjs.cloudflare.com"
+    "https://cdn.jsdelivr.net",
+    "https://cdnjs.cloudflare.com",
+    "'self'",
+    "'unsafe-inline'"
 ]
 
 CSP_SCRIPT_SRC = [
-    "'self",
     "https://stackpath.bootstrapcdn.com",
     "https://cdn.jsdelivr.net",
-    "https://cdnjs.cloudflare.com"
+    "https://cdnjs.cloudflare.com",
+    "'self'",
 ]
 
 CSP_INCLUDE_NONCE_IN = ["script-src"]
