@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'csp.middleware.CSPMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,6 +72,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'csp.context_processors.nonce'
             ],
         },
     },
@@ -200,3 +202,26 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': True,
     'invalid_elements': 'code'
 }
+
+# Content Security Policy
+CSP_DEFAULT_SRC = ["'none'"]
+
+CSP_IMG_SRC = [
+    "'self'",
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com"
+]
+
+CSP_STYLE_SRC = [
+    "https://stackpath.bootstrapcdn.com",
+    "https://cdnjs.cloudflare.com"
+]
+
+CSP_SCRIPT_SRC = [
+    "'self",
+    "https://stackpath.bootstrapcdn.com",
+    "https://cdn.jsdelivr.net",
+    "https://cdnjs.cloudflare.com"
+]
+
+CSP_INCLUDE_NONCE_IN = ["script-src"]
