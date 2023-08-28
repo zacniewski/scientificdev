@@ -238,7 +238,10 @@ CSP_SCRIPT_SRC = [
     "https://stackpath.bootstrapcdn.com",
     "https://cdn.jsdelivr.net",
     "https://cdnjs.cloudflare.com",
+    "https://www.google.com"
     "'self'",
 ]
+
+CSP_FRAME_SRC = ["https://www.google.com"]
 
 CSP_INCLUDE_NONCE_IN = ["script-src"]
