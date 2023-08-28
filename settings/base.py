@@ -239,7 +239,7 @@ CSP_SCRIPT_SRC = [
     "https://stackpath.bootstrapcdn.com",
     "https://cdn.jsdelivr.net",
     "https://cdnjs.cloudflare.com",
-    "https://www.google.com"
+    "https://www.google.com",
     "'self'",
 ]
 
