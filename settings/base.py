@@ -204,7 +204,10 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 
 # Content Security Policy
-CSP_DEFAULT_SRC = ["'self'"]
+CSP_DEFAULT_SRC = [
+    "'self'",
+    "'unsafe-inline'"
+]
 
 CSP_IMG_SRC = [
     "'self'",
