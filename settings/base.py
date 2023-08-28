@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'newsletter.apps.NewsletterConfig',
     'tinymce',
     'taggit',
-    'ambro.apps.AmbroConfig',
+    'sri',
+    'ambro.apps.AmbroConfig', # to remove later!!!
 ]
 
 MIDDLEWARE = [
