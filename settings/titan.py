@@ -1,4 +1,3 @@
-from sri import Algorithm
 from .base import *
 
 DEBUG = True
@@ -9,9 +8,3 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     '/home/artur/Desktop/PROJECTS/scientificdev/static',
 ]
-
-# SRI
-# https://pypi.org/project/django-sri/
-
-USE_SRI = True
-SRI_ALGORITHM = Algorithm.SHA256
