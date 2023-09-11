@@ -52,10 +52,10 @@ dates_for_trash_set_nr_1 = {
     6: (5,),
     7: (3, 31),
     8: (14,),
-    9: (11,),
-    10: (9,),
-    11: (6,),
-    12: (4,),
+    9: (25,),
+    10: (23,),
+    11: (20,),
+    12: (18,),
 }
 
 trash_set_nr_2 = ("Odpady zmieszane", "Odpady bio", "Szkło", "Popiół", "Odpady zielone")
@@ -68,10 +68,10 @@ dates_for_trash_set_nr_2 = {
     6: (19,),
     7: (17,),
     8: (28,),
-    9: (25,),
-    10: (23,),
-    11: (20,),
-    12: (18,),
+    9: (11,),
+    10: (9,),
+    11: (6,),
+    12: (4,),
 }
 
 trash_set_nr_3 = ("Odpady wielkogabarytowe",)
