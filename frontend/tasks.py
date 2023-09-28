@@ -168,10 +168,23 @@ def task_trash_reminder():
 
 
 @app.task
-def task_recuperation_filters():
-    subject = "Filtry rekuperatora"
-    message = f"Czas na wymianę filtrów rekuperatora. \n"
-    message += f"Filtry dostępne są <a href='https://cennik24.pl/'>tutaj</a>."
+def task_recuperation_and_water_filters():
+    subject = "Filtry rekuperatora i filtry wody"
+    message = f"Czas na wymianę filtrów rekuperatora i filtrów wody. \n\n"
+    message += f"Filtry rekuperatora dostępne są <a href='https://cennik24.pl/'>tutaj</a>.\n\n"
+    message += f"Filtry wody, które aktualnie używasz to: filtr 25 um, filtr z węglem aktywnym oraz filtr 5 um \n\n"
+    message += f"Pamiętaj o przepłukaniu filtra z węglem aktywnym po wymianie, bez założonego jeszcze filtra 5 um!"
+    email = EmailMessage(
+        subject, message, "artur@scientificdev.net", ["artur.zacniewski@proton.me"]
+    )
+    email.send(fail_silently=False)
+
+
+@app.task
+def task_car_oil_exchange():
+    subject = "Wymiana oleju w samochodzie"
+    message = f"Czas na wymianę oleju w Twoim aucie. \n\n"
+    message += f"Umów się ze swoim mechanikiem!"
     email = EmailMessage(
         subject, message, "artur@scientificdev.net", ["artur.zacniewski@proton.me"]
     )
@@ -192,10 +205,16 @@ app.conf.beat_schedule = {
         "task": "frontend.tasks.task_trash_reminder",
         "schedule": crontab(hour=19, minute=0),
     },
-    "task_recuperation_filters": {
-        "task": "frontend.tasks.task_recuperation_filters",
+    "task_recuperation_and_water_filters": {
+        "task": "frontend.tasks.task_recuperation_and_water_filters",
         "schedule": crontab(
             month_of_year="3, 6, 9, 12", day_of_month=29, hour=8, minute=10
+        ),
+    },
+    "task_car_oil_exchange": {
+        "task": "frontend.tasks.task_car_oil_exchange",
+        "schedule": crontab(
+            month_of_year="3, 9", day_of_month=28, hour=18, minute=10
         ),
     },
 }
