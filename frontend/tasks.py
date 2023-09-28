@@ -168,12 +168,14 @@ def task_trash_reminder():
 
 
 @app.task
-def task_recuperation_and_water_filters():
-    subject = "Filtry rekuperatora i filtry wody"
-    message = f"Czas na wymianę filtrów rekuperatora i filtrów wody. \n\n"
+def task_home_filters():
+    subject = "Filtry rekuperatora, okapu i filtry wody"
+    message = f"Czas na wymianę filtrów rekuperatora, okapu i filtrów wody. \n\n"
     message += f"Filtry rekuperatora dostępne są <a href='https://cennik24.pl/'>tutaj</a>.\n\n"
+    message += f"Filtry okapu dostępne sa na Allegro! \n\n"
     message += f"Filtry wody, które aktualnie używasz to: filtr 25 um, filtr z węglem aktywnym oraz filtr 5 um \n\n"
-    message += f"Pamiętaj o przepłukaniu filtra z węglem aktywnym po wymianie, bez założonego jeszcze filtra 5 um!"
+    message += (f"Pamiętaj o przepłukaniu filtra z węglem aktywnym po wymianie, z założonym filtrem 25 um, "
+                f"ale bez założonego jeszcze filtra 5 um!")
     email = EmailMessage(
         subject, message, "artur@scientificdev.net", ["artur.zacniewski@proton.me"]
     )
@@ -205,8 +207,8 @@ app.conf.beat_schedule = {
         "task": "frontend.tasks.task_trash_reminder",
         "schedule": crontab(hour=19, minute=0),
     },
-    "task_recuperation_and_water_filters": {
-        "task": "frontend.tasks.task_recuperation_and_water_filters",
+    "task_home_filters": {
+        "task": "frontend.tasks.task_home_filters",
         "schedule": crontab(
             month_of_year="3, 6, 9, 12", day_of_month=29, hour=8, minute=10
         ),
