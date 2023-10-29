@@ -241,6 +241,7 @@ CSP_SCRIPT_SRC = [
     "https://cdnjs.cloudflare.com",
     "https://www.google.com",
     "'self'",
+    "'sha256-78X1D7HeZs/Qxe9PdaraKr7Cu9AEIjQTk1I9gL3i6uw='"
 ]
 
 CSP_FRAME_SRC = ["https://www.google.com"]
