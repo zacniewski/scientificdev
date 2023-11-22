@@ -123,17 +123,17 @@ def task_send_weather_data():
     message = ""
     message += f"I. Temperatura:  \n"
     for i in range(24):
-        message += f"- o godz. {i}.00: {weather_data['hourly']['temperature_2m'][{i}]} °C \n"
+        message += f"- o godz. {i}.00: {weather_data['hourly']['temperature_2m'][i]} °C \n"
     message += "\n"
 
     message += f"II. Prędkość wiatru:  \n"
     for i in range(24):
-        message += f"- o godz. {i}.00: {weather_data['hourly']['windspeed_10m'][{i}]} km/h \n"
+        message += f"- o godz. {i}.00: {weather_data['hourly']['windspeed_10m'][i]} km/h \n"
     message += "\n"
 
     message += f"III. Wilgotność:  \n"
     for i in range(24):
-        message += f"- o godz. {i}.00: {weather_data['hourly']['relativehumidity_2m'][{i}]}% \n"
+        message += f"- o godz. {i}.00: {weather_data['hourly']['relativehumidity_2m'][i]}% \n"
     message += "\n"
 
     message += f"IV. Pogoda o 6.00: {current_weather_description}."
@@ -205,7 +205,7 @@ app.conf.beat_schedule = {
     },
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
-        "schedule": crontab(hour="9, 10", minute=35),
+        "schedule": crontab(hour=11, minute=0),
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
