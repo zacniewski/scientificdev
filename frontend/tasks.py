@@ -119,21 +119,25 @@ def task_send_weather_data():
     for key in weather_codes.keys():
         if current_weather_code in key:
             current_weather_description = weather_codes[key]
-    message = (
-        f"I. Temperatura:  \n"
-        f"- o 6.00: {weather_data['hourly']['temperature_2m'][6]} °C \n"
-        f"- o 12.00: {weather_data['hourly']['temperature_2m'][12]} °C \n"
-        f"- o 18.00: {weather_data['hourly']['temperature_2m'][18]} °C \n\n"
-        f"II. Prędkość wiatru:  \n"
-        f"- o 6.00: {weather_data['hourly']['windspeed_10m'][6]} km/h \n"
-        f"- o 12.00: {weather_data['hourly']['windspeed_10m'][12]} km/h \n"
-        f"- o 18.00: {weather_data['hourly']['windspeed_10m'][18]} km/h \n\n"
-        f"III. Wilgotność:  \n"
-        f"- o 6.00: {weather_data['hourly']['relativehumidity_2m'][6]}% \n"
-        f"- o 12.00: {weather_data['hourly']['relativehumidity_2m'][12]}% \n"
-        f"- o 18.00: {weather_data['hourly']['relativehumidity_2m'][18]}% \n\n"
-        f"IV. Pogoda o 6.00: {current_weather_description}."
-    )
+
+    message = ""
+    message += f"I. Temperatura:  \n"
+    for i in range(24):
+        message += f"- o godz. {i}.00: {weather_data['hourly']['temperature_2m'][{i}]} °C \n"
+    message += "\n"
+
+    message += f"II. Prędkość wiatru:  \n"
+    for i in range(24):
+        message += f"- o godz. {i}.00: {weather_data['hourly']['windspeed_10m'][{i}]} km/h \n"
+    message += "\n"
+
+    message += f"III. Wilgotność:  \n"
+    for i in range(24):
+        message += f"- o godz. {i}.00: {weather_data['hourly']['relativehumidity_2m'][{i}]}% \n"
+    message += "\n"
+
+    message += f"IV. Pogoda o 6.00: {current_weather_description}."
+
     email = EmailMessage(
         subject,
         message,
@@ -154,7 +158,7 @@ def task_trash_reminder():
 
     for key in trash_dates_relations:
         if number_of_day + 1 in trash_dates_relations[key].get(
-            number_of_month, (1000,)
+                number_of_month, (1000,)
         ):
             for trash in key:
                 message += f"- {trash} \n"
@@ -201,7 +205,7 @@ app.conf.beat_schedule = {
     },
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
-        "schedule": crontab(hour=6, minute=0),
+        "schedule": crontab(hour=10, minute=9),
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
