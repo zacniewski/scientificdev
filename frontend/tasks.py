@@ -205,7 +205,7 @@ app.conf.beat_schedule = {
     },
     "task_send_weather_data": {
         "task": "frontend.tasks.task_send_weather_data",
-        "schedule": crontab(hour=10, minute=15),
+        "schedule": crontab(hour=10, minute=21),
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
