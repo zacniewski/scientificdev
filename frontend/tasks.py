@@ -107,7 +107,7 @@ def task_send_email_about_ebook():
 
 
 @app.task
-def task_send_weather_data():
+def task_send_weather_data_full_hours():
     weather_data = requests.get(
         "https://api.open-meteo.com/v1/forecast?latitude=54.57&longitude=18.20"
         "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
@@ -142,7 +142,46 @@ def task_send_weather_data():
         subject,
         message,
         "artur@scientificdev.net",
-        ["artur.zacniewski@proton.me", "joanna.zacniewska@gmail.com"],
+        ["artur.zacniewski@proton.me"],
+    )
+    email.send(fail_silently=False)
+
+
+@app.task
+def task_send_weather_data_four_hours():
+    weather_data_four_hours = requests.get(
+        "https://api.open-meteo.com/v1/forecast?latitude=54.57&longitude=18.20"
+        "&current_weather=true&hourly=temperature_2m,relativehumidity_2m,windspeed_10m"
+    ).json()
+
+    subject = f"Pogoda na {weather_data_four_hours['current_weather']['time'].split('T')[0]}"
+    current_weather_code = weather_data_four_hours["current_weather"]["weathercode"]
+    current_weather_description = ""
+    for key in weather_codes.keys():
+        if current_weather_code in key:
+            current_weather_description = weather_codes[key]
+
+    message = (
+        f"I. Temperatura:  \n"
+        f"- o 6.00: {weather_data_four_hours['hourly']['temperature_2m'][6]} °C \n"
+        f"- o 12.00: {weather_data_four_hours['hourly']['temperature_2m'][12]} °C \n"
+        f"- o 18.00: {weather_data_four_hours['hourly']['temperature_2m'][18]} °C \n\n"
+        f"II. Prędkość wiatru:  \n"
+        f"- o 6.00: {weather_data_four_hours['hourly']['windspeed_10m'][6]} km/h \n"
+        f"- o 12.00: {weather_data_four_hours['hourly']['windspeed_10m'][12]} km/h \n"
+        f"- o 18.00: {weather_data_four_hours['hourly']['windspeed_10m'][18]} km/h \n\n"
+        f"III. Wilgotność:  \n"
+        f"- o 6.00: {weather_data_four_hours['hourly']['relativehumidity_2m'][6]}% \n"
+        f"- o 12.00: {weather_data_four_hours['hourly']['relativehumidity_2m'][12]}% \n"
+        f"- o 18.00: {weather_data_four_hours['hourly']['relativehumidity_2m'][18]}% \n\n"
+        f"IV. Pogoda o 6.00: {current_weather_description}."
+    )
+
+    email = EmailMessage(
+        subject,
+        message,
+        "artur@scientificdev.net",
+        ["artur@scientificdev.net", "joanna.zacniewska@gmail.com"],
     )
     email.send(fail_silently=False)
 
@@ -203,9 +242,13 @@ app.conf.beat_schedule = {
         "task": "frontend.tasks.task_send_email_about_ebook",
         "schedule": crontab(hour=6, minute=5),
     },
-    "task_send_weather_data": {
-        "task": "frontend.tasks.task_send_weather_data",
-        "schedule": crontab(hour=11, minute=0),
+    "task_send_weather_data_full_hours": {
+        "task": "frontend.tasks.task_send_weather_data_full_hours",
+        "schedule": crontab(hour=6, minute=0),
+    },
+    "task_send_weather_data_four_hours": {
+        "task": "frontend.tasks.task_send_weather_data_four_hours",
+        "schedule": crontab(hour=6, minute=1),
     },
     "task_trash_reminder": {
         "task": "frontend.tasks.task_trash_reminder",
