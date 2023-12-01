@@ -20,7 +20,7 @@ django-taggit==5.0.1
 django-tinymce==3.6.1
 idna==3.6
 kombu==5.3.4
-numpy==1.26.2
+numpy==1.24.4
 opencv-contrib-python==4.8.1.78
 opencv-python==4.8.1.78
 Pillow==10.1.0
