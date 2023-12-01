@@ -4,6 +4,52 @@
 {%  block content %}
 
     <main id="main">
+
+        <!-- Video Section -->
+        <section class="home-section bg-dark-alfa-50 light-content relative" data-background="{% static 'video/video.jpg' %}" id="video">
+            <div class="container min-height-100vh d-flex align-items-center pt-100 pb-100">
+
+                <!-- Video BG Init -->
+                <!-- Please replace the video files in folder "video" with your own videos -->
+                <div class="bg-video-wrapper">
+                    <video class="bg-video" preload="auto" autoplay loop muted playsinline data-object-fit="cover">
+                        <source src="{% static 'video/video.webm' %}" type="video/webm">
+                        <source src="{% static 'video/video.ogg' %}" type="video/ogg">
+                        <source src="{%  static 'video/video.mp4' %}" type="video/mp4">
+                    </video>
+                    <div class="bg-video-overlay bg-dark-alfa-30"></div>
+                </div>
+                <a href="#" role="button" class="bg-video-button-muted"><i class="fa fa-volume-off"></i></a>
+                <!-- End Video BG Init -->
+
+                <!-- Hero Content -->
+                <div class="home-content">
+                    <h1 class="hs-line-3 mb-40 mb-xs-20 wow fadeInUpShort" data-wow-delay=".1s">Scientific Dev</h1>
+                    <h2 class="hs-line-2 mb-70 mb-xs-40 wow fadeInUpShort" data-wow-delay=".2s">
+                        <span class="text-rotate">
+                            Web Applications,
+                            Image Processing,
+                            Mentoring
+                        </span>
+                    </h2>
+                    <div class="local-scroll mb-20 wow fadeInUpShort" data-wow-delay=".3s">
+                        <a href="#home" class="btn btn-mod btn-w btn-large btn-round mx-md-1">See More</a>
+                        <!-- YT movie for later -->
+                        <!--<a href="https://www.youtube.com/watch?v=jTea_8Fk5Ns" class="btn btn-mod btn-w btn-large btn-round mx-md-1 lightbox mfp-iframe">Play Reel</a>-->
+                    </div>
+                </div>
+                <!-- End Hero Content -->
+
+                <!-- Scroll Down -->
+                <div class="local-scroll scroll-down-wrap wow fadeInUpShort" data-wow-offset="0">
+                    <a href="#home" class="scroll-down"><i class="scroll-down-icon"></i><span class="sr-only">Scroll to the next section</span></a>
+                </div>
+                <!-- End Scroll Down -->
+
+            </div>
+        </section>
+        <!-- End Video Section -->
+
         <!-- Home Section alfa-90 was the original value in line below-->
         <section class="home-section bg-dark-alfa-70 parallax-5" data-background="{%  static 'images/full-width-images/section-bg-21.jpg' %}" id="home">
             <div class="container min-height-100vh d-flex align-items-center pt-100 pb-100">
@@ -49,8 +95,8 @@
                             </div>
                             <h3 class="services-title">Web Applications</h3>
                             <div class="services-descr">
-                                I mainly use Django, Django Rest Framework or Django-Ninja (backend)
-                                and Bootstrap, Vue.js (frontend) depending on project needs.
+                                I mainly use Django, Django Rest Framework, PostgreSQL on backend
+                                and Bootstrap or React.js on frontend depending on project needs.
                             </div>
                         </div>
                     </div>
@@ -64,10 +110,10 @@
                                     <path d="M12.015 7c4.751 0 8.063 3.012 9.504 4.636-1.401 1.837-4.713 5.364-9.504 5.364-4.42 0-7.93-3.536-9.478-5.407 1.493-1.647 4.817-4.593 9.478-4.593zm0-2c-7.569 0-12.015 6.551-12.015 6.551s4.835 7.449 12.015 7.449c7.733 0 11.985-7.449 11.985-7.449s-4.291-6.551-11.985-6.551zm-.015 3c-2.21 0-4 1.791-4 4s1.79 4 4 4c2.209 0 4-1.791 4-4s-1.791-4-4-4zm-.004 3.999c-.564.564-1.479.564-2.044 0s-.565-1.48 0-2.044c.564-.564 1.479-.564 2.044 0s.565 1.479 0 2.044z"/>
                                 </svg>
                             </div>
-                            <h3 class="services-title">Computer Vision</h3>
+                            <h3 class="services-title">Image Processing</h3>
                             <div class="services-descr">
                                 I almost always use OpenCV in image processing projects.
-                                Sometimes with the help of NumPy, Matplotlib, Pandas and other handy tools.
+                                Sometimes with help of NumPy, Matplotlib, Pandas and other handy tools.
                             </div>
                         </div>
                     </div>
@@ -84,7 +130,7 @@
                             <h3 class="services-title">Trainings</h3>
                             <div class="services-descr">
                                 I have many years of experience in teaching Computer Science,
-                                both in Polish and in English.
+                                both in Polish and English.
                                 I was also the supervisor of over 60 engineering theses.
                             </div>
                         </div>
@@ -101,8 +147,8 @@
                             </div>
                             <h3 class="services-title">Development</h3>
                             <div class="services-descr">
-                                I can configure web servers (Nginx) and ASGI (or WSGI) servers.
-                                I use the CI/CD pipeline and Test Driven Development during projects.
+                                I can configure web servers (mainly Nginx) and WSGI (ASGI) servers.
+                                I use Docker, CI/CD pipeline and Test Driven Development during projects.
                             </div>
                         </div>
                     </div>
