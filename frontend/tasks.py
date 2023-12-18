@@ -44,8 +44,8 @@ trash_set_nr_1 = ("Odpady zmieszane", "Odpady bio", "Plastik i metal", "Makulatu
 
 # klucz - miesiąc, wartość - dzień miesiąca
 dates_for_trash_set_nr_1 = {
-    1: (2, 30),
-    2: (13,),
+    1: (15,),
+    2: (12,),
     3: (13,),
     4: (11,),
     5: (8,),
@@ -60,8 +60,8 @@ dates_for_trash_set_nr_1 = {
 
 trash_set_nr_2 = ("Odpady zmieszane", "Odpady bio", "Szkło", "Popiół", "Odpady zielone")
 dates_for_trash_set_nr_2 = {
-    1: (16,),
-    2: (27,),
+    1: (2, 29),
+    2: (26,),
     3: (27,),
     4: (24,),
     5: (22,),
